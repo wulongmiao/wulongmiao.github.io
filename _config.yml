@@ -1,0 +1,43 @@
+#全局配置
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
+include:
+safe:
+#全站范围的默认值
+defaults:
+  -
+    scope: 
+      path: "" #代表项目所有的文件
+      type: "posts" #只给类型是posts的文件设置默认布局（pages posts drafts）
+    values:
+      layout: "post"
+      author: "龙淼" 
+      header-img: "img/green.jpg" 
+  title: "龙淼" 
+  header-img: "img/green.jpg"
+  tagline: "cn"  
+  description: "欢迎访问我的博客，一起学习进步！"
+  baseurl: ""
+  url: "http://www.daoshangfei.top" 
+  paginate: 8
+
+#网站所有者信息
+owner: 
+  name: "龙淼"
+  email: "wlm19990611@gmail.com "
+  bio: "欢迎访问我的博客，一起学习进步！" 
+
+# 网站地址小图标
+gavatar: "img/favicon.png"
+favicon: "img/favicon.png"
+#社交软件用户名
+github_username: "wulongmiao"
+#输出
+timezone: "Asia/fujian"
+
+# 评论区 
+comments :
+  provider : "disqus" # 使用 disqus 评论模块，读者翻墙才能看见
+  duoshuo :
+    short_name :  # 填写你的 disqus id
+  disqus :
+    short_name :  # 填写你的 disqus id
