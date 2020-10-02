@@ -1,7 +1,7 @@
 /*返回顶部：jquery实现*/
 $(document).ready(function() {
+    
     $("#back-top").hide();
-
     // 淡入淡出效果
     $(function() {
         $(window).scroll(function() {
@@ -11,6 +11,7 @@ $(document).ready(function() {
                 $('#back-top').fadeOut();
             }
         });
+    );
 
     // 回到顶部
         $('#back-top>a').click(function() {

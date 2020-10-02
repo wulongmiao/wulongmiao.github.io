@@ -2,7 +2,7 @@
 #back-top {
   position: fixed;
   bottom: 50px;
-  margin-left: 1100px;
+  left: 1100px;
 }
 #back-top>a {
   width: 56px;
