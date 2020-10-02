@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "博客目录"
-description: "这是我的文章库"  
+description: 
 header-img: "img/semantic.jpg"  
 ---
 
