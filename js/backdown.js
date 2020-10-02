@@ -16,7 +16,7 @@ $(document).ready(function() {
     // 回到底部
         $('#back-down>a').click(function() {
             $('body,html').animate({
-                document.body.clientHeight + 'px'
+                scrollTop:document.body.clientHeight + 'px'
             }, 500);
             return false;
         });
