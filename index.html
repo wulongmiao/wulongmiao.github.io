@@ -9,11 +9,12 @@ description:
         <h2 class="post-title">            
             {{ post.title }}
         </h2>
+        <!--只显示博客前100个字符，并删除所有html标签-->
         <div class="post-content-preview">
-            {{ post.content | strip_html | truncate:150 }}
+            {{ post.content | strip_html | truncate:200 }}
         </div>
     </a>
-    <p class="post-meta">{% if post.author %}{{ post.author }}{% else %}{{ site.title }}{% endif %} 写于 {{ post.date | date: "%B %-d, %Y" }}</p>
+    <p class="post-meta">{% if post.author %}{{ post.author }}{% else %}{{ site.title }}{% endif %} 写于 {{ post.date }}</p>
 </div>
 
 <hr>
