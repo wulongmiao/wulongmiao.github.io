@@ -1,6 +1,6 @@
 /*  Back Top*/
 #back-top {
-  position: absolute;
+  position: fixed;
   bottom: 300px;
   margin-left: 500px;
 }
