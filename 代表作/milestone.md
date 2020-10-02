@@ -1,5 +1,7 @@
 ---
-layout: post
+layout: page
+title: "代表作"
+header-img: "img/zhihu.jpg"
 title: 前端开发分享
 date: 2020-9-30
 categories: 前端
@@ -148,3 +150,9 @@ description: 分享前端开发相关学习的优秀网站、博客。
 
 * 本篇博客参考了Github开发者 [foru17](https://github.com/foru17/front-end-collect) 的文章
 * 本篇博客参考了csdn博主 [超级吴小迪](https://blog.csdn.net/weixin_43606158/article/details/91164392) 的文章
+
+
+
+
+
+

@@ -1,8 +1,8 @@
 /*  Back Top*/
 #back-top {
-  position: absolute;
-  bottom: 95%;
-  margin-left: 90%;
+  position: relative;
+  bottom: 800px;
+  margin-left: 1000px;
 }
 #back-top>a {
   width: 28*3px;

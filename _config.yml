@@ -1,3 +1,10 @@
+  title: "吴龙淼" 
+  header-img: "img/twitter.jpg"
+  tagline: "cn"  
+  description: "欢迎访问我的博客，一起学习进步！"
+  baseurl: ""
+  url: "http://www.daoshangfei.top" 
+  paginate: 8
 #全局配置
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
 include:
@@ -10,27 +17,14 @@ defaults:
       type: "posts" #只给类型是posts的文件设置默认布局（pages posts drafts）
     values:
       layout: "post"
-      author: "龙淼" 
-      header-img: "img/green.jpg" 
-  title: "龙淼" 
-  header-img: "img/green.jpg"
-  tagline: "cn"  
-  description: "欢迎访问我的博客，一起学习进步！"
-  baseurl: ""
-  url: "http://www.daoshangfei.top" 
-  paginate: 8
-
-#网站所有者信息
-owner: 
-  name: "龙淼"
-  email: "wlm19990611@gmail.com "
-  bio: "欢迎访问我的博客，一起学习进步！" 
+      author: "吴龙淼" 
+      header-img: "img/zhihu.jpg" 
 
 # 网站地址小图标
 gavatar: "img/favicon.png"
 favicon: "img/favicon.png"
 #社交软件用户名
-github_username: "wulongmiao"
+github_username: wulongmiao
 #输出
 timezone: "Asia/fujian"
 
