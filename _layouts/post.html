@@ -23,7 +23,7 @@ layout: default
                     {% if page.subtitle %}
                     <h2 class="subheading">{{ page.subtitle }}</h2>
                     {% endif %}
-                    <span class="meta">{% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif %} 写于 {{ page.date | date: "%Y-%m-%d" }}</span>
+                    <span class="meta">{% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif %} 写于 {{ post.date | date: "%Y-%m-%d" }}</span>
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@ layout: default
 <script type="text/javascript" src="/js/backtop.js"></script>  <!-- Back Top -->
 
 <div id="back-top">
-  <a href="#top" title="回到顶部"></a>
+  <a href="#top" title="回到顶部" target="_self"></a>
 </div>
 
 <!-- Post Content -->
@@ -63,7 +63,7 @@ layout: default
 
 
 
-     
+
 <!-- Duoshuo Share start -->
 <style>
 .ds-share{
