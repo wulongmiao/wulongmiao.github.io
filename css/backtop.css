@@ -19,26 +19,3 @@
 #back-top>a:hover {
   background-color: rgb(83, 80, 80);
 }
-
-/*  Back down*/
-#back-down{
-  position: fixed;
-  bottom: 50px;
-  left: 1000px;
-}
-#back-down>a {
-  width: 56px;
-  height: 56px;
-  display: block;
-  background: rgb(200, 199, 199) url(/img/Back-Down_Arrow.png) no-repeat center center;
-  -webkit-border-radius: 7px;
-  -moz-border-radius: 7px;
-  border-radius: 7px;
-  -webkit-transition: 1s;
-  -moz-transition: 1s;
-  transition: 1s;
-}
-#back-top>a:hover {
-  background-color: rgb(83, 80, 80);
-}
-
