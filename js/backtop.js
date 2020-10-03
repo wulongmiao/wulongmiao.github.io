@@ -8,7 +8,8 @@
 
 // 回到底部
     $('#back-down>a').click(function() {
+        $('html,body').stop();
         $('body,html').animate({
-            scrollTop:$(document).height()
+            scrollTop:$(document).height()-$(window).height()
         }, 500);
     });
