@@ -37,7 +37,7 @@ $(function() {
 // 回到底部
     $('#back-down>a').click(function() {
         $('body,html').animate({
-            scrollTop:document.body.scrollHeight-document.body.clientHeight
+            scrollTop:$(document).height()-$(window).height()
         }, 500);
         return false;
     });
