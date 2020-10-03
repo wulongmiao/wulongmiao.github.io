@@ -4,7 +4,6 @@
             $('body,html').animate({
                 scrollTop: 0
             }, 500);
-            return false;
         });
 
 // 回到底部
@@ -12,5 +11,4 @@
         $('body,html').animate({
             scrollTop:$(document).height()
         }, 500);
-        return false;
     });
