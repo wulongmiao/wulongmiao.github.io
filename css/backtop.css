@@ -2,7 +2,7 @@
 #back-top {
   position: fixed;
   bottom: 50px;
-  left: 1057px;
+  left: 90%;
 }
 #back-top>a {
   width: 56px;
@@ -24,7 +24,7 @@
 #back-down{
   position: fixed;
   bottom: 50px;
-  left: 1000px;
+  left: 95%;
 }
 #back-down>a {
   width: 56px;
