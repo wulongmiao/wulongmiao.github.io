@@ -5,7 +5,7 @@ $(document).ready(function() {
     // 淡入淡出效果
     $(function() {
         $(window).scroll(function() {
-            if ($(this).scrollTop()< 100) {
+            if ($(this).scrollTop()>100) {
                 $('#back-down').fadeIn();
             } else {
                 $('#back-down').fadeOut();
@@ -16,7 +16,7 @@ $(document).ready(function() {
     // 回到底部
         $('#back-down>a').click(function() {
             $('body,html').animate({
-                scrollTop:document.body.scrollHeight + 'px'
+                scrollTop:document.body.scrollHeight-document.body.clientHeight
             }, 500);
             return false;
         });
