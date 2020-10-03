@@ -1,7 +1,7 @@
 /*  Back Top*/
 #back-top {
   position: fixed;
-  bottom: 95%;
+  bottom: 5%;
   left: 90%;
 }
 #back-top>a {
@@ -23,8 +23,8 @@
 /*  Back down*/
 #back-down{
   position: fixed;
-  bottom: 95%;
-  left: 93%;
+  bottom: 5%;
+  left: 95%;
 }
 #back-down>a {
   width: 56px;
