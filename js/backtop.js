@@ -1,5 +1,4 @@
 /*返回顶部：jquery实现*/
-$(document).ready(function() {
     
     $("#back-top").hide();
     // 淡入淡出效果
@@ -20,4 +19,3 @@ $(document).ready(function() {
             }, 500);
             return false;
         });
-});
