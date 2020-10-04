@@ -19,7 +19,14 @@ defaults:
       layout: "post"
       author: "吴龙淼" 
       header-img: "img/twitter.jpg" 
-
+  -
+    scope: 
+      path: "" #代表项目所有的文件
+      type: "pages" 
+    values:
+      layout: "page"
+      author: "吴龙淼" 
+      header-img: "img/twitter.jpg" 
 # 网站地址小图标
 gavatar: "img/favicon.png"
 favicon: "img/favicon.png"
