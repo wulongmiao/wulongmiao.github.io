@@ -17,8 +17,8 @@ layout: default
                         <div id="up">
                         </div>
                         {% for tag in page.tags %}
-                        <!--未实现-->
-                        <a class="tag" href="/Tags/#{{ tag }}" title="{{ tag }}">{{ tag }}</a>
+                        <!--跳到标签相关页面-->
+                        <a class="tag" href="/页面/文章列表.md/#{{ tag }}" title="{{ tag }}">{{ tag }}</a>
                         {% endfor %}
                     </div>
                     <h1>{{ page.title }}</h1>
