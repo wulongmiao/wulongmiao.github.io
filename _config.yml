@@ -1,5 +1,5 @@
   title: "吴龙淼" 
-  header-img: "img/mssj.jpg"
+  header-img: "img/lq.jpg"
   tagline: "cn"  
   description: "欢迎访问我的博客，一起学习进步！"
   baseurl: ""
@@ -18,7 +18,7 @@ defaults:
     values:
       layout: "post"
       author: "吴龙淼" 
-      header-img: "img/mssj.jpg" 
+      header-img: "img/lq.jpg" 
 
 # 网站地址小图标
 gavatar: "img/favicon.png"
