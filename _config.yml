@@ -18,7 +18,7 @@ defaults:
     values:
       layout: "post"
       author: "吴龙淼" 
-      header-img: "img/1.jpg" 
+      header-img: "img/twitter.jpg" 
 
 # 网站地址小图标
 gavatar: "img/favicon.png"
