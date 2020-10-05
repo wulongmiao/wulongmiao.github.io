@@ -74,20 +74,12 @@ layout: default
 </article>
 
     <!--评论-->
-    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-<script src="/js/commet.js"></script>
+     <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 
-<script>
-const gitment = new Gitment({
-    id: 'Your page ID', // optional
-    owner: 'wulongmiao',
-    repo: 'wulongmiao.github.io',
-    oauth: {
-      client_id: '2d3b267cdbb4480ca080',
-      client_secret: 'd2e45ad6c06db6e132a5df09a6df8c6037381668',
-    },
-
-  })
-  
-  gitment.render('comments')
-</script>
+    <script>
+        new Valine({
+            el: '#comments',
+            appId: '898Tv5PNyJ7zvpU7FfCjWGiv-gzGzoHsz',
+            appKey: 'nuBLLipj4Mq2U9G2dCmPLJSR'
+        })
+    </script>
