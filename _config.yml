@@ -1,4 +1,4 @@
-  title: "吴龙淼" 
+  title: "吴龙淼的博客" 
   header-img: "img/1.jpg"
   tagline: "cn"  
   description: "欢迎访问我的博客，一起学习进步！"
@@ -14,7 +14,7 @@ defaults:
   -
     scope: 
       path: "" #代表项目所有的文件
-      type: "posts" #只给类型是posts的文件设置默认布局（pages posts drafts）
+      type: "posts" #只给类型是posts的文件设置默认布局
     values:
       layout: "post"
       author: "吴龙淼" 
