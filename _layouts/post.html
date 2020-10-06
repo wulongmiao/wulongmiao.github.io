@@ -19,11 +19,7 @@ layout: default
                         <br/>
                         {% for tag in page.tags %}
                         <!--跳到标签相关页面-->
-                        <a class="tag" href="/页面/文章列表.html#{{ tag }}" title="{{ tag }}" style="color:azure background-color:#000;-webkit-border-radius: 9px; 
--moz-border-radius: 9px; 
-border-radius: 9px;  
-margin:5px;
-padding:5px; ">{{ tag }}</a> 
+                        <a class="tag" href="/页面/文章列表.html#{{ tag }}" title="{{ tag }}" style="color:azure; background-color:#000;-webkit-border-radius: 9px; -moz-border-radius: 9px; border-radius: 9px;  margin:5px;padding:5px; ">{{ tag }}</a> 
                         {% endfor %}
                     </div>
                     <h1>{{ page.title }}</h1>
