@@ -5,8 +5,8 @@
   left: 90%;
 }
 #back-top>a {
-  width: 56px;
-  height: 56px;
+  width: 28px;
+  height: 28px;
   display: block;
   background: rgb(200, 199, 199) url(/img/Back-Top_Arrow.png) no-repeat center center;
   -webkit-border-radius: 7px;
@@ -27,8 +27,8 @@
   left: 95%;
 }
 #back-down>a {
-  width: 56px;
-  height: 56px;
+  width: 28px;
+  height: 28px;
   display: block;
   background: rgb(200, 199, 199) url(/img/Back-Down_Arrow.png) no-repeat center center;
   -webkit-border-radius: 7px;

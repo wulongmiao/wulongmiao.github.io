@@ -19,6 +19,8 @@
 }
 
 .search>.search-icon {
+    position: absolute;
+    top: 18px;
     float: right;
     height: 30px;
     cursor: pointer;
@@ -41,7 +43,7 @@
     z-index: 100;
     position: absolute;
     top: 50px;
-    left: 20px;
+    left: 10px;
     width: 90%;
     max-height: 400px;
     text-align: left;
