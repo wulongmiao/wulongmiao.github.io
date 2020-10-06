@@ -12,7 +12,7 @@
     width: 200px;
     height: 30px;
     margin-left:10px;    
-    top:18px;    
+    top:15px;    
     border: 3px solid #ddd;
     border-radius: 10px;
     box-sizing: border-box;
@@ -20,7 +20,7 @@
 
 .search>.search-icon {
     position: absolute;
-    top: 18px;
+    top: 15px;
     left: 210px;
     float: right;
     height: 30px;
