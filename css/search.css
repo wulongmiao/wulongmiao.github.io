@@ -1,11 +1,11 @@
 .search {
-    position: fixed;
+    position: relative;
     height: 30px;
     text-align: right;
     line-height: 30px;
     padding-right: 10px;
     float: right;
-    
+    width: 100px;
 }
 
 .search>.search-icon {
