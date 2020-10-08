@@ -3,7 +3,7 @@
   position: fixed;
   bottom: 48px;
   right: 20px;
-  z-index: 100;
+  z-index: -1;
 }
 #back-top>a {
   width: 28px;
@@ -19,6 +19,7 @@
 }
 #back-top>a:hover {
   background-color: rgb(83, 80, 80); 
+  z-index: 100;
 }
 
 /*  Back down*/
@@ -26,7 +27,7 @@
   position: fixed;
   bottom: 20px;
   right: 20px;
-  z-index: 100;
+  z-index: -1;
 }
 #back-down>a {
   width: 28px;
@@ -42,5 +43,6 @@
 }
 #back-down>a:hover {
   background-color: rgb(83, 80, 80);
+  z-index: 100;
 }
 
