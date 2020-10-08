@@ -3,7 +3,6 @@
   position: fixed;
   bottom: 48px;
   right: 20px;
-  z-index: -1;
 }
 #back-top>a {
   width: 28px;
@@ -27,7 +26,6 @@
   position: fixed;
   bottom: 20px;
   right: 20px;
-  z-index: -1;
 }
 #back-down>a {
   width: 28px;
