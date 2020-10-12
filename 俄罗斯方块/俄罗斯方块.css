@@ -1,0 +1,48 @@
+ .c{margin:1px;
+     width:19.5px; 
+     height:19.5px;
+      background:red;
+       position:absolute;
+    }
+ .d{margin:1px;
+    width:19px; 
+    height:19px; 
+    background:gray;
+     position:absolute;
+    }
+ .f{ background:black; 
+     position:absolute;
+     top:20px;
+     left:400px;
+     width: 200px;
+     height: 400px;
+    }
+ .e{top:20px; 
+    float: left;
+    left:600px;
+    width: 100px;
+    height: 400px;
+    background:#151515;
+     position:absolute;
+    }
+ .g{width:100px; 
+    height:20px;
+     color:white; 
+     position:absolute;
+     top: 220px;
+     left: 620px;
+    }
+ #bt{
+top:475px;
+left: 525px;
+position: absolute;
+border-radius: 10px;
+background-color: red;
+    }
+p{
+position: absolute;
+top: 410px;
+color: red;
+left: 200px;
+right: 200px;
+}

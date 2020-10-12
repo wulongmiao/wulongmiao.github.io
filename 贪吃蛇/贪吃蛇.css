@@ -1,0 +1,74 @@
+		#container{
+			width: 1200px;
+			margin: auto;
+		}
+		#ground{
+			position: relative;
+			width: 1200px;
+			height: 500px;
+			background: black;
+			overflow: hidden;
+		}
+		#control{
+			width: 1200px;
+			height: 60px;
+			line-height: 60px;
+			background: rgb(82,128,206);
+			position: relative;
+		}
+     #total{
+      margin-right:50px ;
+	  color: #FF0000;	 
+		float: right;
+		font-size: 30px;
+		width: 300px;
+	 }
+		#start{
+			cursor: pointer;
+			border-radius: 30px;
+			width: 60px;
+			height: 40px;
+			background-color:green ;
+			position:relative;
+			margin-left: 80px;
+		}
+		#purse{
+			cursor: pointer;
+			border-radius: 30px;
+			width: 60px;
+			height: 40px;
+			background-color: #FF0000;
+			position: relative;
+			margin-left: 90px;
+            -webkit-box-align: center;
+		}
+		ul{
+			float: left;
+			margin: 10px auto;//上下20 左右自适应
+			height: 40px;
+			line-height: 40px;
+			list-style: none;
+			text-align: center;
+		}
+	     li{
+			cursor: pointer;
+			background: #f6ff9f;
+			float: left;
+			width: 60px;
+			height: 40px;
+			margin-right: 20px;
+			border-radius: 30px;
+		}
+		.food{
+			position: absolute;
+		}
+		.block{
+			float: left;
+			width: 20px;
+			height: 20px;
+	       overflow: hidden;
+		}
+		.snake-block{
+			position: absolute;
+			background: red;
+		}
