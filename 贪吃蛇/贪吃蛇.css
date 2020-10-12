@@ -1,24 +1,24 @@
 		#container{
-			width: 1200px;
+			width: 1000px;
 			margin: auto;
 		}
 		#ground{
 			position: relative;
-			width: 1200px;
+			width: 1000px;
 			height: 500px;
 			background: black;
 			overflow: hidden;
 		}
 		#control{
-			width: 1200px;
+			width: 1000px;
 			height: 60px;
 			line-height: 60px;
-			background: rgb(82,128,206);
+			background: rgb(17, 248, 237);
 			position: relative;
 		}
      #total{
       margin-right:50px ;
-	  color: #FF0000;	 
+	  color: #ffffff;	 
 		float: right;
 		font-size: 30px;
 		width: 300px;
@@ -28,7 +28,7 @@
 			border-radius: 30px;
 			width: 60px;
 			height: 40px;
-			background-color:green ;
+			background-color:rgb(17, 243, 17) ;
 			position:relative;
 			margin-left: 80px;
 		}
@@ -37,7 +37,7 @@
 			border-radius: 30px;
 			width: 60px;
 			height: 40px;
-			background-color: #FF0000;
+			background-color: #ee0606;
 			position: relative;
 			margin-left: 90px;
             -webkit-box-align: center;
