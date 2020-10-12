@@ -39,11 +39,11 @@
 				oDiv.style.top = 0;
 				oDiv.className = "block snake-block";
 				if(i==3)
-				oDiv.style.background = "url(1.png)";
+				oDiv.style.background = "url(1.PNG)";
 				else if(i==2)
-				oDiv.style.background = "url(1.png)";
+				oDiv.style.background = "url(1.PNG)";
 				else 
-				oDiv.style.background = "url(1.png)";
+				oDiv.style.background = "url(1.PNG)";
 				//oDiv.innerHTML = 4-i;
 				aSnaker.push(oDiv);
 				oGround.appendChild(oDiv);
@@ -67,7 +67,7 @@
 			var oFood;
 			function createFood(){//创建食物
 				oFood = document.createElement('div');
-				oFood.style.background="url(1.png)";
+				oFood.style.background="url(1.PNG)";
 				oFood.style.left = parseInt(Math.random()*60)*20+'px';
 				oFood.style.top =parseInt(Math.random()*25)*20+'px';
 				oFood.className = 'block food';
@@ -77,7 +77,7 @@
 			function createDiv(){
 				var oDiv = document.createElement("div");
 				oDiv.className = "block";
-				oDiv.style.background = "url(1.png)";
+				oDiv.style.background = "url(1.PNG)";
 				oDiv.style.position = "absolute";
 				return oDiv;
 			}
@@ -169,7 +169,7 @@
 				if(snakeHead.style.left == oFood.style.left && snakeHead.style.top == oFood.style.top){
 					tailLeft = snakeTail.style.left;
 					tailTop = snakeTail.style.top;
-					oFood.style.background = "url(1.png)";
+					oFood.style.background = "url(1.PNG)";
 					oFood.style.top = tailTop +"px";
 					oFood.style.left = tailLeft+"px";
 					sum++;
