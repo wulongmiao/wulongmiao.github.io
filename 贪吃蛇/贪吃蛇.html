@@ -227,25 +227,40 @@
 					aLi[index].onclick = function(){
 					clearInterval(timer);
 						switch (index){
-							case 0:
+							case 0:{
 								perTime = 300;
-								break;
-							case 1:
+								for(var i0=0;i0<3;i0++){
+								aLi[i0].style.backgroundColor=rgb(251, 255, 4);}
+								aLi[index].style.backgroundColor=rgb(248, 27, 27);
+								break;}
+							case 1:{
+								for(var i0=0;i0<3;i0++){
+								aLi[i0].style.backgroundColor=rgb(251, 255, 4);}
+								aLi[index].style.backgroundColor=rgb(248, 27, 27);
 								perTime = 200;
-								break;
-							case 2:
+								break;}
+							case 2:{
+								for(var i0=0;i0<3;i0++){
+								aLi[i0].style.backgroundColor=rgb(251, 255, 4);}
+								aLi[index].style.backgroundColor=rgb(248, 27, 27);
 								perTime = 50;
-								break;
-							case 3:
+								break;}
+							case 3:{
 							   if(perTime<1000){
 							   perTime += 50;
+								aLi[3].style.backgroundColor=rgb(251, 255, 4);
+								aLi[4].style.backgroundColor=rgb(251, 255, 4);
+								aLi[index].style.backgroundColor=rgb(248, 27, 27);
 								}
-								break;
-							case 4:
+								break;}
+							case 4:{
 								if (perTime>50) {
 									perTime -=50;
+								aLi[3].style.backgroundColor=rgb(251, 255, 4);
+								aLi[4].style.backgroundColor=rgb(251, 255, 4);
+								aLi[index].style.backgroundColor=rgb(248, 27, 27);
 								}									
-								break;
+								break;}
 						}
 						if(oStart.innerHTML=="结束")
 						openTimer();
