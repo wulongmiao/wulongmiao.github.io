@@ -53,7 +53,7 @@
 				var iLeft,iTop;
 				var flag = false;
 				do{
-					iLeft = parseInt(Math.random()*60)*20+'px';
+					iLeft = parseInt(Math.random()*50)*20+'px';
 					iTop = parseInt(Math.random()*25)*20+'px';
 					for(var i=0;i<aSnaker.length;i++){
 						if(iLeft==aSnaker[i].style.left && iTop==aSnaker[i].style.top){
@@ -69,7 +69,7 @@
 			function createFood(){//创建食物
 				oFood = document.createElement('div');
 				oFood.style.background="url(1.jpg)";
-				oFood.style.left = parseInt(Math.random()*60)*20+'px';
+				oFood.style.left = parseInt(Math.random()*50)*20+'px';
 				oFood.style.top =parseInt(Math.random()*25)*20+'px';
 				oFood.className = 'block food';
 				oGround.appendChild(oFood);
