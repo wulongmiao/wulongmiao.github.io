@@ -191,6 +191,7 @@
 			oStart.onclick = function(){
 				if(flag==1){
 					oStart.innerHTML = "结束";
+					oStart.style.backgroundColor=rgb(248, 27, 27);
 					flag=0;
 					openTimer();
 				}
@@ -202,10 +203,12 @@
 			oPurse.onclick = function(){
 				if( oPurse.innerHTML=="暂停" && oStart.innerHTML=="结束"){ 
 					oPurse.innerHTML = "继续";
+					oPurse.style.backgroundColor=rgb(17, 243, 17);
 					clearInterval(timer);
 				}
 				else if(oPurse.innerHTML=="继续" && oStart.innerHTML=="结束"){
 					oPurse.innerHTML = "暂停";	
+					oPurse.style.backgroundColor=rgb(248, 27, 27);
 					openTimer();
 				}
 			};
