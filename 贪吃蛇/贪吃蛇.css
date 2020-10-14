@@ -63,9 +63,6 @@
 			margin-right: 10px;
 			border-radius: 20px;
 		}
-		.food{
-			position: absolute;
- 		}
 		.block{
 			background:url("1.jpg");
 			float: left;

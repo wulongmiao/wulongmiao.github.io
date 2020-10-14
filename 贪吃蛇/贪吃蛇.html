@@ -33,11 +33,11 @@
 		createFood();
 		    //创建蛇身长度为3的蛇
 		    var aSnaker =[];
-			for(var i=3;i>0; i--){
+			for(var i=2;i>=0; i++){
 				var oDiv = document.createElement('div');
 				oDiv.style.left = i*20+'px';
-				oDiv.style.top =100+'px';
-				oDiv.className = "block snake-block";
+				oDiv.style.top =60+'px';
+				oDiv.className = "block";
 				aSnaker.push(oDiv);
 				oGround.appendChild(oDiv);
 			}
@@ -45,19 +45,10 @@
 			//游戏区域内随机生成食物
 			function createFood(){
 			    oFood = document.createElement('div');
-				oFood.className = "block food";
+				oFood.className = "block";
 				oFood.style.left = parseInt(Math.random()*50)*20+'px';
 				oFood.style.top =parseInt(Math.random()*25)*20+'px';
 				oGround.appendChild(oFood);
-			}
-			//在保存蛇数组倒数第二个元素添加一节身体
-			function addDiv(tailTop,tailLeft){
-				var oDiv = document.createElement("div");
-				oDiv.className = "block";
-				oDiv.style.top = tailTop +"px";
-				oDiv.style.left = tailLeft+"px";
-				oGround.appendChild(oDiv);
-				aSnaker.splice(aSnaker.length-1,0,oDiv);
 			}
 			//食物添加到尾巴的前面后计算尾巴现在应有的坐标
 			function priTail(headLeft,headTop,tailLeft,tailTop,moveDir){
@@ -89,6 +80,7 @@
 					aSnaker[i].style.left = aSnaker[i-1].style.left;
 					aSnaker[i].style.top = aSnaker[i-1].style.top;
 					}
+				//蛇头
 				var snakeHead = aSnaker[0];
 				var headLeft = parseInt(snakeHead.style.left);
 				var headTop = parseInt(snakeHead.style.top);
@@ -116,11 +108,11 @@
 						}
 					}
 				//撞墙游戏结束
-				if(snakeHead.style.left < "0px"|| snakeHead.style.top < "0px" || snakeHead.style.top== "500px" || snakeHead.style.left == "1000px")
+				if(headLeft < 0 || headTop <0 || headTop==500 || headLeft == 1000)
 				{
 					reStart();
 				}
-				//变量保存当前尾巴
+				//尾巴
 				var snakeTail = aSnaker[aSnaker.length-1];
 				var tailLeft = parseInt(snakeTail.style.left);
 				var tailTop = parseInt(snakeTail.style.top);
@@ -139,16 +131,14 @@
 					createFood();
 				}
 			}
-			var flag=1;
 			//点击开始按钮
 			var oStart = document.getElementById('start');
 			oStart.onclick = function(){
-				if(flag==1){
+				if(oStart.innerHTML="开始"){
 					oStart.innerHTML = "结束";
-					flag=0;
 					openTimer();
 				}
-				else if(flag==0){
+				else if(oStart.innerHTML="结束"){
 					reStart();
 				}
 			};		
@@ -190,7 +180,7 @@
 								perTime = 100;
 								break;
 							case 3:
-							   if(perTime<1000){
+							   if(perTime<500){
 							   perTime += 50;
 								}
 								break;
@@ -200,7 +190,7 @@
 								}									
 								break;
 						}
-						if(oStart.innerHTML=="结束")
+						if(oStart.innerHTML=="结束" && oPurse=="暂停")
 						openTimer();
 					};
 				}
