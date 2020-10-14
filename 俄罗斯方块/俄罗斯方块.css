@@ -32,17 +32,24 @@
      top: 220px;
      left: 620px;
     }
+   .sm{
+   width:300px;
+   top:420px;
+   left: 400px;
+   position: absolute;
+   font-size: 14px;
+    }
  #bt{
-top:475px;
-left: 525px;
+top:500px;
+left: 480px;
 position: absolute;
 border-radius: 10px;
-background-color: red;
+background-color: rgb(29, 243, 22);
     }
-p{
+  #purse{
+top:500px;
+left: 570px;
 position: absolute;
-top: 410px;
-color: red;
-left: 200px;
-right: 200px;
-}
+border-radius: 10px;
+background-color:rgb(246, 21, 21);
+    }   
