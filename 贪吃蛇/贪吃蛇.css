@@ -65,10 +65,12 @@
 		}
 		.food{
 			position: absolute;
-		}
+ 		}
 		.block{
+			background:url("1.jpg");
 			float: left;
 			width: 20px;
 			height: 20px;
-	       overflow: hidden;
+		   overflow: hidden;
+		   position: absolute;
 		}
