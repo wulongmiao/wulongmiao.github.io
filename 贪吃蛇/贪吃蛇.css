@@ -19,6 +19,7 @@
      #total{
 	  color: #ffffff;	 
 		float: right;
+		right: 50px;
 		font-size: 30px;
 		width: 300px;
 		text-align: center;
@@ -42,7 +43,7 @@
 			height: 40px;
 			background-color: rgb(248, 27, 27);
 			position: relative;
-			margin-left: 20px;
+			margin-left: 30px;
 			top:10px
 		}
 		ul{
@@ -70,8 +71,4 @@
 			width: 20px;
 			height: 20px;
 	       overflow: hidden;
-		}
-		.snake-block{
-			position: absolute;
-			background: red;
 		}
