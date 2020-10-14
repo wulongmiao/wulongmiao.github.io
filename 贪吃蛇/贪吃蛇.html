@@ -31,8 +31,8 @@
 		var oControl = document.getElementById('control');
 		var adiv=document.getElementById("total");
 		createFood();
-		//创建蛇身长度为3的蛇
-		var aSnaker =[];
+		    //创建蛇身长度为3的蛇
+		    var aSnaker =[];
 			for(var i=3;i>0; i--){
 				var oDiv = document.createElement('div');
 				oDiv.style.left = i*20+'px';
@@ -42,7 +42,6 @@
 				aSnaker.push(oDiv);
 				oGround.appendChild(oDiv);
 			}
-			
 			//游戏区域内随机生成食物
 			function createFood(){
 				var oFood = document.createElement('div');
@@ -52,37 +51,16 @@
 				oFood.className = "block food";
 				oGround.appendChild(oFood);
 			}
-
-			function createDiv(){
+			//在保存蛇数组倒数第二个元素添加一节身体
+			function addDiv(tailTop,tailLeft){
 				var oDiv = document.createElement("div");
 				oDiv.className = "block";
 				oDiv.style.background = "url(1.jpg)";
 				oDiv.style.position = "absolute";
-				return oDiv;
-			}
-           //在保存蛇数组倒数第二个元素添加一节身体
-			function addDiv(tailTop,tailLeft){
-				var oDiv = createDiv();
 				oDiv.style.top = tailTop +"px";
 				oDiv.style.left = tailLeft+"px";
 				oGround.appendChild(oDiv);
 				aSnaker.splice(aSnaker.length-1,0,oDiv);
-			}
-
-			function divPos(){
-				var iLeft,iTop;
-				var flag = false;
-				do{
-					iLeft = parseInt(Math.random()*50)*20+'px';
-					iTop = parseInt(Math.random()*25)*20+'px';
-					for(var i=0;i<aSnaker.length;i++){
-						if(iLeft==aSnaker[i].style.left && iTop==aSnaker[i].style.top){
-							flag = true;
-							break;
-						}
-					}
-				}while(flag)
-				return {iLeft:iLeft,iTop:iTop};
 			}
 			//食物添加到尾巴的前面后计算尾巴现在应有的坐标
 			function priTail(headLeft,headTop,tailLeft,tailTop,moveDir){
@@ -150,20 +128,14 @@
 				var snakeTail = aSnaker[aSnaker.length-1];
 				var tailLeft = parseInt(snakeTail.style.left);
 				var tailTop = parseInt(snakeTail.style.top);
-				
 				//得分：吃到的食物添加到尾巴的前面，分别改变尾巴和食物的定位坐标值
 				if(snakeHead.style.left == oFood.style.left && snakeHead.style.top == oFood.style.top)
 				{
 					sum++;
-					tailLeft = snakeTail.style.left;
-					tailTop = snakeTail.style.top;
-					oFood.style.background = "url(1.jpg)";
+					adiv.innerHTML="得分:"+sum;
 					oFood.style.top = tailTop +"px";
 					oFood.style.left = tailLeft+"px";
 					aSnaker.splice(aSnaker.length-1,0,oFood);
-					tailTop = priTail(headLeft,headTop,tailLeft,tailTop,moveDir).tailTop;	
-					tailLeft = priTail(headLeft,headTop,tailLeft,tailTop,moveDir).tailLeft;
-					adiv.innerHTML="得分:"+sum;
 					tailTop = priTail(headLeft,headTop,tailLeft,tailTop,moveDir).tailTop;	
 					tailLeft = priTail(headLeft,headTop,tailLeft,tailTop,moveDir).tailLeft;
 					snakeTail.style.left = tailLeft+'px';
@@ -171,9 +143,8 @@
 					createFood();
 				}
 			}
-
-			var timer;
 			var flag=1;
+			//点击开始按钮
 			var oStart = document.getElementById('start');
 			oStart.onclick = function(){
 				if(flag==1){
@@ -184,7 +155,8 @@
 				else if(flag==0){
 					reStart();
 				}
-			};			
+			};		
+			//点击暂停按钮	
 			var oPurse = document.getElementById('purse');
 			oPurse.onclick = function(){
 				if( oPurse.innerHTML=="暂停" && oStart.innerHTML=="结束"){ 
@@ -196,18 +168,18 @@
 					openTimer();
 				}
 			};
+			//定时器
 			var perTime = 300;
 			function openTimer(){
-				timer = setInterval(function(){//定时器
+			var	timer = setInterval(function(){
 						move();
-						//alert(oStart.innerHTML);
 					}, perTime);
 			}
 			//设置时间间隔，以改变速度
 			var oSpeed = document.getElementById('speed');
 			var aLi = oSpeed.getElementsByTagName('li');
 			for(var i=0;i<aLi.length;i++){
-				//通过改变perTimer 改变时间
+				//改变perTime,控制蛇的速度
 				(function(index){
 					aLi[index].onclick = function(){
 					clearInterval(timer);
@@ -244,11 +216,9 @@
 					var msg = alert("游戏结束，再来一局！");
 					window.location.reload();
 				}
-
+            //按键改变转向
 			document.onkeydown = function(e){
-				//设置转向
 				e = e||window.event;
-				//保证兼容性使用两个
 				var keyCode = e.which || e.keyCode;
 				switch (keyCode){
 					case 37:
