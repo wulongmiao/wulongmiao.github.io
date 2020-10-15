@@ -71,10 +71,13 @@ searchBtn.onclick = searchConfirm;
 // 经测试，onkeydown, onchange 等方法效果不太理想，
 // 存在输入延迟等问题，最后发现触发 input 事件最理想，
 searchInput.oninput = function () {
-    setTimeout(searchConfirm, 0);
+    searchConfirm();
 }
-
-
+/*
+searchInput.onfocus = function () {
+    searchResults.style.display = 'block';
+}
+*/
 // 搜索匹配
 function searchMatching(arr1, arr2, input) {
     // 忽略输入大小写
