@@ -63,6 +63,7 @@ function searchConfirm() {
 }
 
 // 开始获取根目录下 feed.xml 文件内的数据
+var xhr = new XMLHttpRequest() || new ActiveXObject('Microsoft.XMLHTTP');
 xhr.open('get', '/feed.xml', true);
 xhr.send();
 searchBtn.onclick = searchConfirm;
@@ -79,17 +80,18 @@ searchInput.onfocus = function () {
 }
 */
 // 搜索匹配
-function searchMatching(arr1, arr2, input) {
+function searchMatching(title, content, input) {
     // 忽略输入大小写
     input = new RegExp(input, 'i');
     // 在所有文章标题、内容中匹配查询值
-    for (i = 0; i < itemLength; i++) {
-        if (arr1[i].search(input) !== -1 || arr2[i].search(input) !== -1) {
+    for (var i = 0; i < itemLength; i++)
+     {
+        if (title[i].search(input) !== -1 || content[i].search(input) !== -1) {
             // 优先搜索标题
-            if (arr1[i].search(input) !== -1) {
-                var arr = arr1;
+            if (title[i].search(input) !== -1) {
+                var arr = title;
             } else {
-                var arr = arr2;
+                var arr = content;
             }
             indexItem.push(i);  // 保存匹配值的索引
             var indexContent = arr[i].search(input);
@@ -104,7 +106,6 @@ function searchMatching(arr1, arr2, input) {
         }
     }
 // ajax 的兼容写法
-var xhr = new XMLHttpRequest() || new ActiveXObject('Microsoft.XMLHTTP');
 xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
         xml = xhr.responseXML;
@@ -136,7 +137,7 @@ xhr.onreadystatechange = function () {
     }
 
     // 将所有匹配内容进行组合
-    for (i = 0; i < arrResults.length; i++) {
+    for (var i = 0; i < arrResults.length; i++) {
         var itemDiv = tmpDiv.cloneNode(true);
         itemDiv.innerHTML = '<b>《' + arrTitles[indexItem[i]] +
             '》</b><hr />' + arrResults[i];
@@ -149,8 +150,8 @@ xhr.onreadystatechange = function () {
 function changeHref(href) {
 
     // 在当前页面打开链接
-    location.href = href;
+   // location.href = href;
 
     // 在新标签页面打开链接
-    // window.open(href);
+    window.open(href);
 }
