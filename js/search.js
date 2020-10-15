@@ -70,7 +70,9 @@ searchBtn.onclick = searchConfirm;
 // 实时匹配，可以处理中文输入法拼写的变化
 // 经测试，onkeydown, onchange 等方法效果不太理想，
 // 存在输入延迟等问题，最后发现触发 input 事件最理想，
-
+searchInput.oninput = function () {
+    setTimeout(searchConfirm, 0);
+}
 
 
 // 搜索匹配
