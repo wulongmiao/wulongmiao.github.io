@@ -1,5 +1,4 @@
 // 获取搜索框、搜索按钮、清空搜索、结果输出对应的元素
-var searchBtn = document.querySelector('.search-start');
 var searchClear = document.querySelector('.search-clear');
 var searchInput = document.querySelector('.search-input');
 var searchResults = document.querySelector('.search-results');
@@ -84,11 +83,7 @@ xhr.onreadystatechange = function () {
 // 开始获取根目录下 feed.xml 文件内的数据
 xhr.open('get', '/feed.xml', true);
 xhr.send();
-searchBtn.onclick = searchConfirm();
-
-// 实时匹配，可以处理中文输入法拼写的变化
-// 经测试，onkeydown, onchange 等方法效果不太理想，
-// 存在输入延迟等问题，最后发现触发 input 事件最理想，
+// 实时匹配
 searchInput.oninput = function () {
     searchConfirm();
 }
