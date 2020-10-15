@@ -133,7 +133,7 @@ function searchMatching(title, content, input) {
         var itemDiv = tmpDiv.cloneNode(true);
         itemDiv.innerHTML = '<b>《' + arrTitles[indexItem[i]] +
             '》</b><hr />' + arrResults[i];
-        itemDiv.setAttribute('onclick', 'changeHref(arrLinks[indexItem[' + i + ']])');
+        itemDiv.setAttribute('onclick', 'changeHref(arrLinks[indexItem[i]])');
         searchResults.appendChild(itemDiv);
     }
 }
