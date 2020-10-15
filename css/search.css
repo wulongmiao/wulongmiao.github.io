@@ -51,6 +51,7 @@
     border-radius: 8px;
     background: #ccc;
     box-shadow: 0 .3rem .5rem #333;
+    overflow: scroll;
 }
 
 .search>.search-results>.result-item {
@@ -60,5 +61,4 @@
     padding: 3px;
     border-radius: 8px;
     cursor: pointer;
-    overflow: scroll;
 }
