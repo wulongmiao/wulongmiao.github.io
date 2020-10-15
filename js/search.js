@@ -15,7 +15,7 @@ var searchValue = '',
     arrTitles = [],
     //结果
     arrResults = [],
-    //匹配项
+    //匹配索引值
     indexItem = [],
     //匹配项长度
     itemLength = 0;
@@ -132,7 +132,7 @@ function searchMatching(title, content, input) {
         var itemDiv = tmpDiv.cloneNode(true);
         itemDiv.innerHTML = '<b>《' + arrTitles[indexItem[i]] +
             '》</b><hr />' + arrResults[i];
-        itemDiv.setAttribute('onclick', 'changeHref(arrLinks[indexItem[' + i + ']])');
+        itemDiv.setAttribute('onclick', 'changeHref(arrLinks[indexItem[i]])');
         searchResults.appendChild(itemDiv);
     }
 }
