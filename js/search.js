@@ -61,12 +61,30 @@ function searchConfirm() {
         searchMatching(arrTitles, arrContents, searchValue);
     }
 }
-
-// 开始获取根目录下 feed.xml 文件内的数据
 var xhr = new XMLHttpRequest() || new ActiveXObject('Microsoft.XMLHTTP');
+// ajax 的兼容写法
+xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+        xml = xhr.responseXML;
+        arrItems = xml.getElementsByTagName('item');
+        itemLength = arrItems.length;
+        
+        // 遍历并保存所有文章对应的标题、链接、内容到对应的数组中
+        // 同时过滤掉 HTML 标签
+        for (i = 0; i < itemLength; i++) {
+            arrContents[i] = arrItems[i].getElementsByTagName('description')[0].
+                childNodes[0].nodeValue.replace(/<.*?>/g, '');
+            arrLinks[i] = arrItems[i].getElementsByTagName('link')[0].
+                childNodes[0].nodeValue.replace(/<.*?>/g, '');
+            arrTitles[i] = arrItems[i].getElementsByTagName('title')[0].
+                childNodes[0].nodeValue.replace(/<.*?>/g, '');
+        }
+    }
+}
+// 开始获取根目录下 feed.xml 文件内的数据
 xhr.open('get', '/feed.xml', true);
 xhr.send();
-searchBtn.onclick = searchConfirm;
+searchBtn.onclick = searchConfirm();
 
 // 实时匹配，可以处理中文输入法拼写的变化
 // 经测试，onkeydown, onchange 等方法效果不太理想，
@@ -74,11 +92,7 @@ searchBtn.onclick = searchConfirm;
 searchInput.oninput = function () {
     searchConfirm();
 }
-/*
-searchInput.onfocus = function () {
-    searchResults.style.display = 'block';
-}
-*/
+
 // 搜索匹配
 function searchMatching(title, content, input) {
     // 忽略输入大小写
@@ -105,25 +119,7 @@ function searchMatching(title, content, input) {
                 arr[i].slice(indexContent + l, indexContent + l + step));
         }
     }
-// ajax 的兼容写法
-xhr.onreadystatechange = function () {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-        xml = xhr.responseXML;
-        arrItems = xml.getElementsByTagName('item');
-        itemLength = arrItems.length;
-        
-        // 遍历并保存所有文章对应的标题、链接、内容到对应的数组中
-        // 同时过滤掉 HTML 标签
-        for (i = 0; i < itemLength; i++) {
-            arrContents[i] = arrItems[i].getElementsByTagName('description')[0].
-                childNodes[0].nodeValue.replace(/<.*?>/g, '');
-            arrLinks[i] = arrItems[i].getElementsByTagName('link')[0].
-                childNodes[0].nodeValue.replace(/<.*?>/g, '');
-            arrTitles[i] = arrItems[i].getElementsByTagName('title')[0].
-                childNodes[0].nodeValue.replace(/<.*?>/g, '');
-        }
-    }
-}
+
     // 输出总共匹配到的数目
     var totalDiv = tmpDiv.cloneNode(true);
     totalDiv.innerHTML = '输入匹配：<b>' + indexItem.length + '</b> 项';
