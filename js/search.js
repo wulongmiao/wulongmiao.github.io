@@ -1,12 +1,10 @@
-// 获取搜索框、搜索按钮、清空搜索、结果输出对应的元素
+// 获取搜索框、清空搜索、结果输出对应的元素
 var searchClear = document.querySelector('.search-clear');
 var searchInput = document.querySelector('.search-input');
 var searchResults = document.querySelector('.search-results');
 
 //输入框内容
 var searchValue = '',
-   //文章匹配项
-    arrItems = [],
     //内容
     arrContents = [],
     //链接
@@ -17,7 +15,9 @@ var searchValue = '',
     arrResults = [],
     //匹配索引值
     indexItem = [],
-    //匹配项长度
+    //文章匹配项
+     arrItems = [],
+    //文章匹配项长度
     itemLength = 0;
 var tmpDiv = document.createElement('div');
 tmpDiv.className = 'result-item';
@@ -60,14 +60,18 @@ function searchConfirm() {
         searchMatching(arrTitles, arrContents, searchValue);
     }
 }
+//兼容性(IE低版本)
 var xhr = new XMLHttpRequest() || new ActiveXObject('Microsoft.XMLHTTP');
-// ajax 的兼容写法
+// 请求初始化 /feed.xml代表在服务器的位置，true异步，get安全，大数据传输
+xhr.open('get', '/feed.xml', true);
+//开始发送请求到服务器
+xhr.send();
+//当readyState改变时，触发事件onreadystatechange
 xhr.onreadystatechange = function () {
+    //响应已完成，且请求成功
     if (xhr.readyState == 4 && xhr.status == 200) {
-        xml = xhr.responseXML;
-        arrItems = xml.getElementsByTagName('item');
+        arrItems = xhr.responseXML.getElementsByTagName('item');
         itemLength = arrItems.length;
-        
         // 遍历并保存所有文章对应的标题、链接、内容到对应的数组中
         // 同时过滤掉 HTML 标签
         for (i = 0; i < itemLength; i++) {
@@ -80,9 +84,6 @@ xhr.onreadystatechange = function () {
         }
     }
 }
-// 开始获取根目录下 feed.xml 文件内的数据
-xhr.open('get', '/feed.xml', true);
-xhr.send();
 // 实时匹配
 searchInput.oninput = function () {
     searchConfirm();
@@ -98,20 +99,20 @@ function searchMatching(title, content, input) {
         if (title[i].search(input) !== -1 || content[i].search(input) !== -1) {
             // 优先搜索标题
             if (title[i].search(input) !== -1) {
-                var arr = title;
+                var arr = title[i];
             } else {
-                var arr = content;
+                var arr = content[i];
             }
             indexItem.push(i);  // 保存匹配值的索引
-            var indexContent = arr[i].search(input);
+            var indexContent = arr.search(input);
             // 此时 input 为 RegExp 格式 /input/i，转换为原 input 字符串长度
             var l = input.toString().length - 3;
             var step = 10;
             
             // 将匹配到内容的地方进行黄色标记，并包括周围一定数量的文本
-            arrResults.push(arr[i].slice(indexContent - step, indexContent) +
-                '<mark>' + arr[i].slice(indexContent, indexContent + l) + '</mark>' +
-                arr[i].slice(indexContent + l, indexContent + l + step));
+            arrResults.push(arr.slice(indexContent - step, indexContent) +
+                '<mark>' + arr.slice(indexContent, indexContent + l) + '</mark>' +
+                arr.slice(indexContent + l, indexContent + l + step));
         }
     }
 
@@ -132,7 +133,7 @@ function searchMatching(title, content, input) {
         var itemDiv = tmpDiv.cloneNode(true);
         itemDiv.innerHTML = '<b>《' + arrTitles[indexItem[i]] +
             '》</b><hr />' + arrResults[i];
-        itemDiv.setAttribute('onclick', 'changeHref(arrLinks[indexItem[i]])');
+        itemDiv.setAttribute('onclick', 'changeHref(arrLinks[indexItem[' + i + ']])');
         searchResults.appendChild(itemDiv);
     }
 }
