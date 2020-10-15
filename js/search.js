@@ -4,17 +4,25 @@ var searchClear = document.querySelector('.search-clear');
 var searchInput = document.querySelector('.search-input');
 var searchResults = document.querySelector('.search-results');
 
-// 申明保存文章的标题、链接、内容的数组变量
+//输入框内容
 var searchValue = '',
+   //文章匹配项
     arrItems = [],
+    //内容
     arrContents = [],
+    //链接
     arrLinks = [],
+    //标题
     arrTitles = [],
+    //结果
     arrResults = [],
+    //匹配项
     indexItem = [],
+    //匹配项长度
     itemLength = 0;
 var tmpDiv = document.createElement('div');
 tmpDiv.className = 'result-item';
+
 // 每次搜索完成后的初始化
 function searchInit() {
     arrResults = [];
@@ -23,27 +31,30 @@ function searchInit() {
     searchResults.style.display = 'block';
     searchClear.style.display = 'block';
 }
-// 清空按钮点击函数
+
+// 点击清空按钮
 searchClear.onclick = function(){
     searchInput.value = '';
     searchResults.style.display = 'none';
     searchClear.style.display = 'none';
 }
 
-
 //输入框状态检测
 function searchConfirm() {
+    //无输入时
     if (searchInput.value == '') {
         searchResults.style.display = 'none';
         searchClear.style.display = 'none';
-    } else if (searchInput.value.search(/^\s+$/) >= 0) {
-        // 检测输入值全是空白的情况
-        searchInit();
+    } 
+      // 输入值全是空格的情况
+    else if (searchInput.value.search(/^\s+$/) >= 0) {
+         searchInit();
         var itemDiv = tmpDiv.cloneNode(true);
         itemDiv.innerText = '请输入有效内容...';
         searchResults.appendChild(itemDiv);
-    } else {
-        // 合法输入值的情况
+    }
+    // 合法输入值的情况
+     else {
         searchInit();
         searchValue = searchInput.value;
         // 在标题、内容中查找
@@ -56,17 +67,11 @@ xhr.open('get', '/feed.xml', true);
 xhr.send();
 searchBtn.onclick = searchConfirm;
 
-
-
 // 实时匹配，可以处理中文输入法拼写的变化
 // 经测试，onkeydown, onchange 等方法效果不太理想，
 // 存在输入延迟等问题，最后发现触发 input 事件最理想，
-searchInput.oninput = function () {
-    setTimeout(searchConfirm, 0);
-}
-searchInput.onfocus = function () {
-    searchResults.style.display = 'block';
-}
+
+
 
 // 搜索匹配
 function searchMatching(arr1, arr2, input) {
