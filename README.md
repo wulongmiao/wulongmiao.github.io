@@ -1,7 +1,7 @@
 ## 技术栈
 1. GitHub Jekyll
 2. Bootstrap
-3. less
+3. Django
 ## 文件夹说明
 * 图片文件:img
 * Bootstrap框架文件(前端UI框架)：
