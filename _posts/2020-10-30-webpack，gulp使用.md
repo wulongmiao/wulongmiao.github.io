@@ -22,6 +22,7 @@ npm install --save-dev webpack
 
 2. 通过 npm init 初始化一个package.json文件
 3. 在 package.json 文件中的 scripts 配置项中，添加一个脚本命令
+4. npm run bulid
 
 ```
 build 表示构建、打包
@@ -31,8 +32,6 @@ webpack 入口文件路径 --output 出口文件路径
   "build": "webpack ./src/js/main.js --output ./dist/bundle.js"
 }
 ```
-
-4. npm run bulid
 
 #### 本地服务器
 
@@ -244,6 +243,7 @@ gulp.task('concat', function () {
 ```
 
 * less和sass的编译
+
 less使用gulp-less,安装：npm install --save-dev gulp-less
 
 ```
