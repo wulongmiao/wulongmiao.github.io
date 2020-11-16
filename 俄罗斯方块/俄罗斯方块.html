@@ -188,12 +188,12 @@ for(var m=0;m<3;m++)
     this.removeLine(m);
    }
   }
-  this.score -= -this.calScore(s);
+  this.score += this.calScore(s);
  }
  this.calScore = function(s)
  {
   if(s!=0)
-   return s- -this.calScore(s-1)
+   return s + this.calScore(s-1)
   else
    return 0;
  }
