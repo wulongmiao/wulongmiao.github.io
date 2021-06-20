@@ -16,7 +16,7 @@
 * js:javascript脚本
 
 ## 联系博主
-* qq邮箱：2570814462@qq.com
+* QQ邮箱：2570814462@qq.com
 * 谷歌邮箱：wlm19990611@gmail.com
 
 
