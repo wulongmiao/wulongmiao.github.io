@@ -5,6 +5,7 @@
   baseurl: ""
   url: "https://www.daoshangfei.top" 
   paginate: 15
+  paginate_path: "page:num"
 #全局配置
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
 include:
