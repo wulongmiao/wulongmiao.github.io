@@ -53,11 +53,10 @@ title: "主页"
       <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
     {% endif %}
   {% endfor %}
-  <span class="page_number ">当前页:  {{ paginator.page }} 总页码 {{ paginator.total_pages }}</span>
   {% if paginator.next_page %}
     <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">后一页 &raquo;</a>
   {% else %}
-    <span>后一页 &raquo;</span>
+    <span>ds &raquo;</span>
   {% endif %}
 </div>
 {% endif %}
