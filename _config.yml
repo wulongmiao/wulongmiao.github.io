@@ -4,7 +4,7 @@
   description: "欢迎访问我的博客，一起学习进步！"
   baseurl: ""
   url: "https://www.daoshangfei.top" 
-  paginate: 15
+  paginate: 10
   paginate_path: ":num"
 #全局配置
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
