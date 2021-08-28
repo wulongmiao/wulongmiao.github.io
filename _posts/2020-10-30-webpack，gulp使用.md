@@ -284,10 +284,6 @@ module.exports = {
 
 `cnpm install clean-webpack-plugin --save-dev`
 
-
-
-
-
 ## gulp
 
 ### 安装
@@ -313,7 +309,7 @@ gulp.task('default',function(){
 
 ### 常用API
 
-1. gulp.src()
+gulp.src()
 
 ```
 gulp.src(globs[, options])
@@ -321,7 +317,7 @@ globs参数是文件匹配模式(类似正则表达式)，用来匹配文件路�
 options为可选参数
 ```
 
-2. gulp.task()
+gulp.task()
 
 ```
 gulp.task(name[, deps], fn)
@@ -330,7 +326,7 @@ deps 是当前定义的任务需要依赖的其他任务，为一个数组。当
 fn 为任务函数，我们把任务要执行的代码都写在里面。该参数也是可选的。
 ```
 
-3. gulp.dest() 
+gulp.dest() 
 
 ```
 gulp.dest(path[,options])
@@ -343,7 +339,7 @@ gulp.src('script/jquery.js')
 //最终生成的文件路径为 dist/foo.js/jquery.js,而不是dist/foo.js
 ```
 
-4. gulp.watch()
+gulp.watch()
 
 ```
 gulp.watch(glob[, opts], tasks)
@@ -354,8 +350,9 @@ tasks 为文件变化后要执行的任务，为一个数组
 
 ### 常用插件
 
-* 自动加载
-安装：npm install --save-dev gulp-load-plugins
+自动加载
+
+`npm install --save-dev gulp-load-plugins`
 
 ```
 var gulp = require('gulp');
@@ -363,9 +360,9 @@ var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
 ```
 
-* js文件压缩
-安装：npm install --save-dev gulp-uglify
+js文件压缩
 
+`npm install --save-dev gulp-uglify`
 ```
 var gulp = require('gulp'),
     uglify = require("gulp-uglify");
@@ -377,8 +374,9 @@ gulp.task('minify-js', function () {
 });
 ```
 
-* css压缩
-安装：npm install --save-dev gulp-minify-css
+css压缩
+
+`npm install --save-dev gulp-minify-css`
 
 ```
 var gulp = require('gulp'),
@@ -391,8 +389,9 @@ gulp.task('minify-css', function () {
 });
 ```
 
-* html压缩
-安装：npm install --save-dev gulp-minify-html
+html压缩
+
+`npm install --save-dev gulp-minify-html`
 
 ```
 var gulp = require('gulp'),
@@ -405,8 +404,9 @@ gulp.task('minify-html', function () {
 });
 ```
 
-* 文件合并
-安装：npm install --save-dev gulp-concat
+文件合并
+
+`npm install --save-dev gulp-concat`
 
 ```
 var gulp = require('gulp'),
@@ -419,9 +419,9 @@ gulp.task('concat', function () {
 });
 ```
 
-* less和sass的编译
+less和sass的编译
 
-less使用gulp-less,安装：npm install --save-dev gulp-less
+`npm install --save-dev gulp-less`
 
 ```
 var gulp = require('gulp'),
@@ -434,7 +434,8 @@ gulp.task('compile-less', function () {
 });
 ```
 
-sass使用gulp-sass,安装：npm install --save-dev gulp-sass
+`npm install --save-dev gulp-sass`
+
 ```
 var gulp = require('gulp'),
     sass = require("gulp-sass");
@@ -446,8 +447,9 @@ gulp.task('compile-sass', function () {
 });
 ```
 
-* 图片压缩
-安装：npm install --save-dev gulp-imagemin
+图片压缩
+
+`npm install --save-dev gulp-imagemin`
 
 ```
 var gulp = require('gulp');
