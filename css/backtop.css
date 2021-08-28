@@ -1,4 +1,10 @@
 /*  Back Top*/
+
+/*所有链接去下划线*/
+*{
+  text-decoration: none;
+}
+
 #back-top {
   position: fixed;
   bottom: 48px;
