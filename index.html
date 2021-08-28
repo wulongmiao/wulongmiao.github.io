@@ -20,6 +20,7 @@ title: "主页"
 <hr>
 {% endfor %}
 
+<!--
 <div class="pagination">
     {% if paginator.previous_page %}
     <a href="/page{{ paginator.previous_page }}" class="previous">前一页</a>
@@ -34,24 +35,13 @@ title: "主页"
     {% endif %}
 </div>
 
-
-<!--
-{% for post in paginator.posts %}
-<h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
-<p class="author">
-  <span class="date">{{ post.date }}</span>
-</p>
-<div class="content">
-  {{ post.content }}
-</div>
-{% endfor %}
-
+-->
 {% if paginator.total_pages > 1 %}
 <div class="pagination">
   {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; Prev</a>
+    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; 前一页v</a>
   {% else %}
-    <span>&laquo; Prev</span>
+    <span>&laquo; 前一页</span>
   {% endif %}
 
   {% for page in (1..paginator.total_pages) %}
@@ -63,12 +53,11 @@ title: "主页"
       <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
     {% endif %}
   {% endfor %}
-
+  <span class="page_number ">当前页:  {{ paginator.page }} 总页码 {{ paginator.total_pages }}</span>
   {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next &raquo;</a>
+    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">后一页 &raquo;</a>
   {% else %}
-    <span>Next &raquo;</span>
+    <span>后一页 &raquo;</span>
   {% endif %}
 </div>
 {% endif %}
--->
