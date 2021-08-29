@@ -19,11 +19,11 @@
         <!--导航菜单栏 -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                {% for page in site.pages %}                
                 <li>
                     <a class="navbar-brand" href="{{ site.baseurl }}/" target="_self" style="font-size: 30px">主页</a>
                 </li>
-                {% if page.title != '主页' %}
+                {% for page in site.pages %}
+                {% if page.title != '主页' && page.title %}
                 <li>
                     <a href="{{ page.url | prepend: site.baseurl }}" target="_self">{{ page.title }}</a>
                 </li>
