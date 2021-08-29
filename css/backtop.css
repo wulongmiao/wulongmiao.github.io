@@ -1,7 +1,7 @@
 /*  Back Top*/
 
 /*所有链接去下划线*/
-a{
+a:hover{
   text-decoration: none;
 }
 
