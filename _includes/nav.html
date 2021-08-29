@@ -23,11 +23,12 @@
                     <a class="navbar-brand" href="{{ site.baseurl }}/" target="_self" style="font-size: 30px">主页</a>
                 </li>
                 {% for page in site.pages %}
-                {% if page.title != '主页' && page.title %}
+                {% if page.title  %}
+                {% if page.title!= '主页' %}
                 <li>
                     <a href="{{ page.url | prepend: site.baseurl }}" target="_self">{{ page.title }}</a>
                 </li>
-                {% endif %}{% endfor %}
+                {% endif %}{% endif %}{% endfor %}
             </ul>
         </div>
 
