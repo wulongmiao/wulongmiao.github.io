@@ -21,7 +21,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 {% for page in site.pages %}
-                {% if page.title %}
+                {% if page.title != '主页' %}
                 <li>
                     <a href="{{ page.url | prepend: site.baseurl }}" target="_self">{{ page.title }}</a>
                 </li>
