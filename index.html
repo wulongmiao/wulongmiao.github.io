@@ -39,7 +39,7 @@ title: "主页"
 {% if paginator.total_pages > 1 %}
 <div class="pagination">
   {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; 前一页&nbsp;</a>
+    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}" target="_self" >&laquo; 前一页&nbsp;</a>
   {% else %}
     <span>&laquo; 前一页&nbsp;</span>
   {% endif %}
@@ -48,13 +48,13 @@ title: "主页"
     {% if page == paginator.page %}
       <em style="background-color: aqua; font-size: 18px;">{{ page }}&nbsp;</em>
     {% elsif page == 1 %}
-      <a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}&nbsp;</a>
+      <a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}" target="_self">{{ page }}&nbsp;</a>
     {% else %}
-      <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}&nbsp;</a>
+      <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}" target="_self" >{{ page }}&nbsp;</a>
     {% endif %}
   {% endfor %}
   {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">后一页 &raquo;</a>
+    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}" target="_self">后一页 &raquo;</a>
   {% else %}
     <span>后一页 &raquo;</span>
   {% endif %}
