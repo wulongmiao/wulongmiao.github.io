@@ -23,21 +23,21 @@
         top:-30px;
     }
 }
-@media screen and (max-width: 380px) and (min-width:330px){
+@media screen and (max-width: 379px) and (min-width:330px){
     .search>.search-input {
         top:-30px;
         left: 40px;
 
     }
 }
-@media screen and (max-width: 330px) and (min-width:300px){
+@media screen and (max-width: 329px) and (min-width:300px){
     .search>.search-input {
         top:-30px;
         left: 60px;
 
     }
 }
-@media screen and (max-width: 300px) and (min-width:270px){
+@media screen and (max-width: 299px) and (min-width:270px){
     .search>.search-input {
         top:-30px;
         left: 90px;
