@@ -12,18 +12,14 @@ a:hover{
   z-index: 100;
 }
 
-@media screen and (max-width:458px) and (min-width:270px){
+@media screen and (max-width:458px) and (min-width:300px){
   #back-top{
     right: 10%;
     top:35px;
-    z-index: 100;
-    position: fixed;
   }
   #back-down{
     right: 10%;
     top:10px;
-    position: fixed;
-    z-index: 100;
   }
 }
 
