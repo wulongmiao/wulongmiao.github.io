@@ -16,10 +16,14 @@ a:hover{
   #back-top{
     right: 10%;
     top:35px;
+    z-index: 100;
+    position: fixed;
   }
   #back-down{
     right: 10%;
     top:10px;
+    position: fixed;
+    z-index: 100;
   }
 }
 
