@@ -17,6 +17,8 @@ a:hover{
     right: 31px;
     bottom:38px;
   }
+}
+  @media screen and (max-width:458px) and (min-width:300px){
   #back-down{
     right: 31px;
     bottom:10px;
