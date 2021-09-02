@@ -11,6 +11,18 @@ a:hover{
   right: 20px;
   z-index: 100;
 }
+
+@media screen and (max-width:458px) and (max-width:270px){
+  #back-top{
+    right: 10%;
+    top:35px;
+  }
+  #back-down{
+    right: 10%;
+    top:10px;
+  }
+}
+
 #back-top>a {
   width: 28px;
   height: 28px;
