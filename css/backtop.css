@@ -15,11 +15,11 @@ a:hover{
 @media screen and (max-width:458px) and (min-width:300px){
   #back-top{
     right: 10%;
-    top:35px;
+    bottom:35px;
   }
   #back-down{
     right: 10%;
-    top:10px;
+    bottom:10px;
   }
 }
 
