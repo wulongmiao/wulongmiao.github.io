@@ -21,12 +21,30 @@
 @media screen and (max-width: 458px) and (min-width:380px){
     .search>.search-input {
         top:-30px;
+        position:absolute ;
+        float: right;
+        width: 200px;
+        height: 30px;
+        margin-left:10px;  
+        left:10px;
+        border: 3px solid #ddd;
+        border-radius: 10px;
+        box-sizing: border-box;
     }
 }
 @media screen and (max-width: 380px) and (min-width:270px){
     .search>.search-input {
         top:-30px;
         left: 90px;
+        position:absolute ;
+        float: right;
+        width: 200px;
+        height: 30px;
+        margin-left:10px;
+        border: 3px solid #ddd;
+        border-radius: 10px;
+        box-sizing: border-box;
+        
 
     }
 }
