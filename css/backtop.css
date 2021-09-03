@@ -12,15 +12,12 @@ a:hover{
   z-index: 100;
 }
 
-@media screen and (max-width:458px) and (min-width:300px){
-  #back-top{
-    right:33px;
-    bottom:38px;
-  }
-  #back-down{
-    right:33px;
-    bottom:10px;
-  }
+/*  Back down*/
+#back-down{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
 }
 
 #back-top>a {
@@ -39,13 +36,6 @@ a:hover{
   background-color: rgb(83, 80, 80); 
 }
 
-/*  Back down*/
-#back-down{
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 100;
-}
 #back-down>a {
   width: 28px;
   height: 28px;
@@ -62,3 +52,13 @@ a:hover{
   background-color: rgb(83, 80, 80);
 }
 
+@media screen and (max-width:458px) and (min-width:300px){
+  #back-top{
+    right:33px;
+    bottom:38px;
+  }
+  #back-down{
+    right:33px;
+    bottom:10px;
+  }
+}
