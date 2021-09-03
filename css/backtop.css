@@ -20,6 +20,17 @@ a:hover{
   z-index: 100;
 }
 
+@media screen and (max-width:458px) and (min-width:300px){
+  #back-top{
+    right:35px;
+    bottom:40px;
+  }
+  #back-down{
+    right:35px;
+    bottom:15px;
+  }
+}
+
 #back-top>a {
   width: 28px;
   height: 28px;
@@ -50,15 +61,4 @@ a:hover{
 }
 #back-down>a:hover {
   background-color: rgb(83, 80, 80);
-}
-
-@media screen and (max-width:458px) and (min-width:300px){
-  #back-top{
-    right:33px;
-    bottom:38px;
-  }
-  #back-down{
-    right:33px;
-    bottom:10px;
-  }
 }
