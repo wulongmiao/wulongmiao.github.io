@@ -75,13 +75,14 @@ npm run server
 
 ### loaders
 
+```
 Loaders需要单独安装并且需要在webpack.config.js中的modules关键字下进行配置，Loaders的配置包括以下几方面：
 加载时，数组从尾部开始执行
 test：一个用以匹配loaders所处理文件的拓展名的正则表达式（必须）
 use:[ loader：loader的名称（必须）]
 include/exclude:手动添加必须处理的文件（文件夹）或屏蔽不需要处理的文件（文件夹）（可选）
 query：为loaders提供额外的设置选项
-
+```
 
 #### babel
 
@@ -168,6 +169,24 @@ module.exports = {
     ...
     module: {
         rules: [
+         {
+        test: /\.less$/,
+        use: [{
+          loader: "style-loader" // creates style nodes from JS strings
+        }, {
+          loader: "css-loader" // translates CSS into CommonJS
+        }, {
+          loader: "less-loader" // compiles Less to CSS
+        }]
+      },
+      {
+        test: /\.sass$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          'sass-loader?indentedSyntax'
+        ],
+      },
             {
                 test: /(\.jsx|\.js)$/,
                 use: {
@@ -185,7 +204,8 @@ module.exports = {
                         options: {
                             modules: true
                         }
-                    }, {
+                    }, 
+                    {
                         loader: "postcss-loader"
                     }
                 ]
@@ -246,12 +266,13 @@ module.exports = {
 };
 ```
 
+```
 优化插件
     内置插件
         OccurenceOrder webpack可以分析和优先考虑使用最多的模块，并为它们分配最小的ID
         UglifyJS plugins压缩JS代码
 ExtractTextPlugin 分离CSS和JS文件
-
+```
 `npm install --save-dev extract-text-webpack-plugin`
 
 ## 缓存
