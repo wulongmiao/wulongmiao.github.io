@@ -3,7 +3,7 @@ layout: post
 title: TypeScript入门
 date: 2021-8-20
 categories: 前端开发
-tags: [JS超集,TypeScript]
+tags: [JS超集,TypeScript,类型检查]
 ---
 
 ## 安装
@@ -71,6 +71,12 @@ void
 function hello(): void {
     alert("Hello Runoob");
 }
+
+null undefined
+
+never
+
+object
 ```
 
 ## 联合类型
@@ -81,33 +87,99 @@ val = 12
 console.log("数字为 "+ val) 
 val = "Runoob" 
 console.log("字符串为 " + val)
+
+可选属性 ?
+interface SquareConfig {
+  color?: string;
+  width?: number;
+}
+
+```
+
+## 泛型
+```
+类似于any，但是不会丢失信息
+
+function loggingIdentity<T>(arg: T): T {
+    console.log(arg.length);  // Error: T doesn't have .length
+    return arg;
+}
+function loggingIdentity<T>(arg: Array<T>): Array<T> {
+    console.log(arg.length);  // Array has a .length, so no more error
+    return arg;
+}
+let output = identity("myString"); 
+
+泛型接口  
+interface GenericIdentityFn {
+    <T>(arg: T): T;
+}
+interface GenericIdentityFn<T> {
+    (arg: T): T;
+}
+function identity<T>(arg: T): T {
+    return arg;
+}
+let myIdentity: GenericIdentityFn = identity;
+
+泛型类
+class GenericNumber<T> {
+    zeroValue: T;
+    add: (x: T, y: T) => T;
+}
+let myGenericNumber = new GenericNumber<number>();
+myGenericNumber.zeroValue = 0;
+myGenericNumber.add = function(x, y) { return x + y; };
+
+泛型约束
+需要传入符合约束类型的值，必须包含必须的属性
+interface Lengthwise {
+    length: number;
+}
+function loggingIdentity<T extends Lengthwise>(arg: T): T {
+    console.log(arg.length);  // Now we know it has a .length property, so no more error
+    return arg;
+}
+```
+
+## 类的扩展
+```
+private  只能在定义类内使用
+protected 在派生类内可以使用(可继承)
+public  默认值
+
+extends
+readonly 
+get
+set
+static
+抽象类 abstract不同于接口，抽象类可以包含成员的实现细节
+
+接口能用的地方类都能使用
 ```
 
 ## 接口
 接口中我们可以将数组的索引值和元素设置为不同类型，索引值可以是数字或字符串
 ```
-interface interface_name { 
-}
+属性严格检查
+只读属性 readonly 
+可选属性 ?
+索引签名 [index:number || string] 
+实现 implements接口继承拥有私有或受保护的成员的类时，这个接口类型只能被这个类或其子类实现
+继承 extends
 
-interface IPerson { 
-    firstName:string, 
-    lastName:string, 
-    sayHi: ()=>string 
-} 
- 
-var customer:IPerson = { 
-    firstName:"Tom",
-    lastName:"Hanks", 
-    sayHi: ():string =>{return "Hi there"} 
-} 
 ```
 
 ## 命名空间
 ```
+别名内部模块
 namespace SomeNameSpaceName { 
    export interface ISomeInterfaceName {      }  
    export class SomeClassName {      }  
 }
+
+起别名 import q = x.y.z
+写声明文件 .d.ts
 ```
 
 ## 声明文件
