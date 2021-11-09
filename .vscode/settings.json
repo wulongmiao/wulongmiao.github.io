@@ -1,4 +1,32 @@
+/*
+git忽略大量更改
+侧边栏
+移动删除文件不提示
+自动关闭标签
+移动文件自动更新路径
+保存自动导入
+emmet快速开发
+单击打开文件
+*/
 {
     "git.ignoreLimitWarning": true,
-    "compile-hero.disable-compile-files-on-did-save-code": true
+    "workbench.activityBar.visible":true,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "javascript.autoClosingTags": true,
+    "javascript.preferences.importModuleSpecifier": "non-relative",
+    "typescript.preferences.importModuleSpecifier": "non-relative",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "editor.codeActionsOnSave": {
+        "source.fixAll":true,
+        "addMissingImports":true
+    },
+    "emmet.includeLanguages": {
+        "postcss": "css",
+        "javascript":"javascriptreact"
+    },
+    "emmet.syntaxProfiles": {"postcss":"css"},
+    "emmet.triggerExpansionOnTab": true,
+    "workbench.editor.enablePreview": true
 }
