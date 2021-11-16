@@ -124,7 +124,7 @@ let myIdentity: GenericIdentityFn = identity;
 
 泛型类
 class GenericNumber<T> {
-    zeroValue: T;
+   readonly zeroValue: T;
     add: (x: T, y: T) => T;
 }
 let myGenericNumber = new GenericNumber<number>();
