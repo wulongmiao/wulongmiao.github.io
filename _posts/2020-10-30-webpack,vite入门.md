@@ -9,6 +9,7 @@ tags: [前端开发,webpack,vite]
 ## webpack
 
 webpack识别一个入口文件，然后分析路由，模块化，最后打包，服务器启动
+<img src="/img/webpack.png">
 
 打包原理
 
@@ -503,8 +504,7 @@ gulp.task('default', function () {
 ## vite
 
 预构建依赖,等待HTTP请求,构建代码,vite充分利用缓存加快重载
-
-[][]
+<img src="/img/vite.png">
 
 ### 初始化
 
