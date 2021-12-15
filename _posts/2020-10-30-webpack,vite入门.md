@@ -8,6 +8,18 @@ tags: [前端开发,webpack,vite]
 
 ## webpack
 
+webpack识别一个入口文件，然后分析路由，模块化，最后打包，服务器启动
+
+打包原理
+
+1.先逐级递归识别依赖，构建依赖图谱
+
+2.将代码转化成AST抽象语法树
+
+3.在AST阶段中去处理代码
+
+4.把AST抽象语法树变成浏览器可以识别的代码， 然后输出
+
 ### 初始化
 
 ```
@@ -487,3 +499,17 @@ gulp.task('default', function () {
         .pipe(gulp.dest('dist'));
 });
 ```
+
+## vite
+
+预构建依赖,等待HTTP请求,构建代码,vite充分利用缓存加快重载
+
+[][]
+
+### 初始化
+
+安装
+
+`$ npm init vite@latest`
+
+`$ yarn create vite`
