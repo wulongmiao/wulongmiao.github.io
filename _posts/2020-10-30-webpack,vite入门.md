@@ -1,25 +1,25 @@
 ---
 layout: post
 title: webpack,vite使用
-date:  2020-10-30
+date: 2020-10-30
 categories: 前端
-tags: [前端开发,webpack,vite]
+tags: [前端开发, webpack, vite]
 ---
 
 ## webpack
 
-webpack识别一个入口文件，然后分析路由，模块化，最后打包，服务器启动
+webpack 识别一个入口文件，然后分析路由，模块化，最后打包，服务器启动
 <img src="/img/webpack.png">
 
 打包原理
 
 1.先逐级递归识别依赖，构建依赖图谱
 
-2.将代码转化成AST抽象语法树
+2.将代码转化成 AST 抽象语法树
 
-3.在AST阶段中去处理代码
+3.在 AST 阶段中去处理代码
 
-4.把AST抽象语法树变成浏览器可以识别的代码， 然后输出
+4.把 AST 抽象语法树变成浏览器可以识别的代码， 然后输出
 
 ### 初始化
 
@@ -36,27 +36,28 @@ webpack识别一个入口文件，然后分析路由，模块化，最后打包�
 
 3. 构建
    npm start
-   npm run {script name}  
+   npm run {script name}
 ```
 
 ### 自动构建
+
 ```
 let files = require.context(查找url,boolean是否查找子目录,匹配的正则):Object
 files.keys()==Object.keys() 返回匹配成功模块的名字组成的数组
 ```
 
-### 生成Source Maps
+### 生成 Source Maps
 
 ```
 Source Maps找到错误代码的位置
-开发环境eval-source-map  cheap-module-eval-source-map 
-生产环境cheap-module-source-map 
+开发环境eval-source-map  cheap-module-eval-source-map
+生产环境cheap-module-source-map
 congfig中配置  devtool: 'source-map' |'cheap-module-source-map' |  'eval-source-map' | 'cheap-module-eval-source-map'
-``` 
+```
 
 ### 本地服务器
 
-监听代码需要安装组件，基于node.js
+监听代码需要安装组件，基于 node.js
 `npm install --save-dev webpack-dev-server`
 
 ```
@@ -74,8 +75,8 @@ module.exports = {
     contentBase: "./public",//本地服务器所加载的页面所在的目录
     historyApiFallback: true,//不跳转
     inline: true//实时刷新
-    port:"8080 "//监听端口    
-  } 
+    port:"8080 "//监听端口
+  }
 }
 
 package.json中的scripts对象中添加如下命令，用以开启本地服务器：
@@ -101,7 +102,7 @@ query：为loaders提供额外的设置选项
 
 #### babel
 
-// npm一次性安装多个依赖模块，模块之间用空格隔开
+// npm 一次性安装多个依赖模块，模块之间用空格隔开
 `npm install --save-dev babel-core babel-loader babel-preset-env babel-preset-react`
 
 ```
@@ -136,7 +137,7 @@ module.exports = {
 };
 ```
 
-##### css模块
+##### css 模块
 
 `npm install --save-dev style-loader css-loader`
 
@@ -173,9 +174,9 @@ module.exports = {
 };
 ```
 
-##### css预处理器
+##### css 预处理器
 
-CSS的处理平台-PostCSS 和babel一样也是独立于webpack的平台，能够一起工作
+CSS 的处理平台-PostCSS 和 babel 一样也是独立于 webpack 的平台，能够一起工作
 `npm install --save-dev postcss-loader autoprefixer`
 
 ```
@@ -219,7 +220,7 @@ module.exports = {
                         options: {
                             modules: true
                         }
-                    }, 
+                    },
                     {
                         loader: "postcss-loader"
                     }
@@ -236,7 +237,7 @@ module.exports = {
 
 ### 插件(Plugins)
 
-插件（Plugins）是用来拓展Webpack功能,在整个构建过程中生效,类似于谷歌插件
+插件（Plugins）是用来拓展 Webpack 功能,在整个构建过程中生效,类似于谷歌插件
 
 ```
 const webpack = require('webpack');
@@ -276,7 +277,7 @@ module.exports = {
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.optimize.UglifyJsPlugin(),
         new ExtractTextPlugin("style.css")
-    
+
     ],
 };
 ```
@@ -288,17 +289,19 @@ module.exports = {
         UglifyJS plugins压缩JS代码
 ExtractTextPlugin 分离CSS和JS文件
 ```
+
 `npm install --save-dev extract-text-webpack-plugin`
 
 ### 缓存
 
 使用缓存的最好方法是保证你的文件名和文件内容是匹配的（内容改变，名称相应改变）
+
 ```
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require("clean-webpack-plugin");
- 
+
 module.exports = {
 
     output: {
@@ -320,7 +323,6 @@ module.exports = {
 
 `cnpm install clean-webpack-plugin --save-dev`
 
-
 ### 安装
 
 ```
@@ -332,17 +334,19 @@ npm install --save-dev gulp
 
 ### 使用
 
-1.建立gulpfile.js文件
+1.建立 gulpfile.js 文件
+
 ```
 var gulp = require('gulp');
 gulp.task('default',function(){
     console.log('hello world');
 });
 ```
-2.运行gulp任务
-在控制台切换到存放gulpfile.js文件的目录，然后在命令行中执行 `gulp + 任务名`
 
-### 常用API
+2.运行 gulp 任务
+在控制台切换到存放 gulpfile.js 文件的目录，然后在命令行中执行 `gulp + 任务名`
+
+### 常用 API
 
 gulp.src()
 
@@ -361,7 +365,7 @@ deps 是当前定义的任务需要依赖的其他任务，为一个数组。当
 fn 为任务函数，我们把任务要执行的代码都写在里面。该参数也是可选的。
 ```
 
-gulp.dest() 
+gulp.dest()
 
 ```
 gulp.dest(path[,options])
@@ -395,13 +399,14 @@ var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
 ```
 
-js文件压缩
+js 文件压缩
 
 `npm install --save-dev gulp-uglify`
+
 ```
 var gulp = require('gulp'),
     uglify = require("gulp-uglify");
- 
+
 gulp.task('minify-js', function () {
     gulp.src('js/*.js') // 要压缩的js文件
     .pipe(uglify())  //使用uglify进行压缩,更多配置请参考：
@@ -409,14 +414,14 @@ gulp.task('minify-js', function () {
 });
 ```
 
-css压缩
+css 压缩
 
 `npm install --save-dev gulp-minify-css`
 
 ```
 var gulp = require('gulp'),
     minifyCss = require("gulp-minify-css");
- 
+
 gulp.task('minify-css', function () {
     gulp.src('css/*.css') // 要压缩的css文件
     .pipe(minifyCss()) //压缩css
@@ -424,14 +429,14 @@ gulp.task('minify-css', function () {
 });
 ```
 
-html压缩
+html 压缩
 
 `npm install --save-dev gulp-minify-html`
 
 ```
 var gulp = require('gulp'),
     minifyHtml = require("gulp-minify-html");
- 
+
 gulp.task('minify-html', function () {
     gulp.src('html/*.html') // 要压缩的html文件
     .pipe(minifyHtml()) //压缩
@@ -446,7 +451,7 @@ gulp.task('minify-html', function () {
 ```
 var gulp = require('gulp'),
     concat = require("gulp-concat");
- 
+
 gulp.task('concat', function () {
     gulp.src('js/*.js')  //要合并的文件
     .pipe(concat('all.js'))  // 合并匹配到的js文件并命名为 "all.js"
@@ -454,14 +459,14 @@ gulp.task('concat', function () {
 });
 ```
 
-less和sass的编译
+less 和 sass 的编译
 
 `npm install --save-dev gulp-less`
 
 ```
 var gulp = require('gulp'),
     less = require("gulp-less");
- 
+
 gulp.task('compile-less', function () {
     gulp.src('less/*.less')
     .pipe(less())
@@ -474,7 +479,7 @@ gulp.task('compile-less', function () {
 ```
 var gulp = require('gulp'),
     sass = require("gulp-sass");
- 
+
 gulp.task('compile-sass', function () {
     gulp.src('sass/*.sass')
     .pipe(sass())
@@ -503,7 +508,7 @@ gulp.task('default', function () {
 
 ## vite
 
-预构建依赖,等待HTTP请求,构建代码,vite充分利用缓存加快重载
+预构建依赖,等待 HTTP 请求,构建代码,vite 充分利用缓存加快重载
 <img src="/img/vite.png">
 
 ### 初始化
