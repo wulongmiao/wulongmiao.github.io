@@ -91,6 +91,8 @@ npm run server
 
 ### loaders
 
+用于对模块的源代码进行转换，import时预处理文件
+
 ```
 Loaders需要单独安装并且需要在webpack.config.js中的modules关键字下进行配置，Loaders的配置包括以下几方面：
 加载时，数组从尾部开始执行
@@ -272,22 +274,14 @@ module.exports = {
         ]
     },
     plugins: [
+        new webpack.HotModuleReplacementPlugin(),// 热加载插件
+        new webpack.optimize.UglifyJsPlugin(),// plugins压缩JS代码
+        new ExtractTextPlugin("style.css") // 分离CSS和JS文件
+        new webpack.optimize.OccurrenceOrderPlugin(), // 分析和优先考虑使用最多的模块，并为它们分配最小的ID
         new webpack.BannerPlugin('版权所有，翻版必究'),
-        new webpack.HotModuleReplacementPlugin(),//热加载插件
-        new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.optimize.UglifyJsPlugin(),
-        new ExtractTextPlugin("style.css")
 
     ],
 };
-```
-
-```
-优化插件
-    内置插件
-        OccurenceOrder webpack可以分析和优先考虑使用最多的模块，并为它们分配最小的ID
-        UglifyJS plugins压缩JS代码
-ExtractTextPlugin 分离CSS和JS文件
 ```
 
 `npm install --save-dev extract-text-webpack-plugin`
@@ -322,189 +316,6 @@ module.exports = {
 改变文件内容后重新打包时，文件名不同而内容越来越多
 
 `cnpm install clean-webpack-plugin --save-dev`
-
-### 安装
-
-```
-全局安装
-npm install -g gulp
-项目目录中安装
-npm install --save-dev gulp
-```
-
-### 使用
-
-1.建立 gulpfile.js 文件
-
-```
-var gulp = require('gulp');
-gulp.task('default',function(){
-    console.log('hello world');
-});
-```
-
-2.运行 gulp 任务
-在控制台切换到存放 gulpfile.js 文件的目录，然后在命令行中执行 `gulp + 任务名`
-
-### 常用 API
-
-gulp.src()
-
-```
-gulp.src(globs[, options])
-globs参数是文件匹配模式(类似正则表达式)，用来匹配文件路径(包括文件名)，当然这里也可以直接指定某个具体的文件路径。当有多个匹配模式时，该参数可以为一个数组。
-options为可选参数
-```
-
-gulp.task()
-
-```
-gulp.task(name[, deps], fn)
-name 为任务名
-deps 是当前定义的任务需要依赖的其他任务，为一个数组。当前定义的任务会在所有依赖的任务执行完毕后才开始执行。如果没有依赖，则可省略这个参数
-fn 为任务函数，我们把任务要执行的代码都写在里面。该参数也是可选的。
-```
-
-gulp.dest()
-
-```
-gulp.dest(path[,options])
-path为写入文件的路径
-options为一个可选的参数对象
-
-var gulp = require('gulp');
-gulp.src('script/jquery.js')
-    .pipe(gulp.dest('dist/foo.js'));
-//最终生成的文件路径为 dist/foo.js/jquery.js,而不是dist/foo.js
-```
-
-gulp.watch()
-
-```
-gulp.watch(glob[, opts], tasks)
-glob 为要监视的文件匹配模式，规则和用法与gulp.src()方法中的glob相同。
-opts 为一个可选的配置对象，通常不需要用到
-tasks 为文件变化后要执行的任务，为一个数组
-```
-
-### 常用插件
-
-自动加载
-
-`npm install --save-dev gulp-load-plugins`
-
-```
-var gulp = require('gulp');
-//加载gulp-load-plugins插件，并马上运行它
-var plugins = require('gulp-load-plugins')();
-```
-
-js 文件压缩
-
-`npm install --save-dev gulp-uglify`
-
-```
-var gulp = require('gulp'),
-    uglify = require("gulp-uglify");
-
-gulp.task('minify-js', function () {
-    gulp.src('js/*.js') // 要压缩的js文件
-    .pipe(uglify())  //使用uglify进行压缩,更多配置请参考：
-    .pipe(gulp.dest('dist/js')); //压缩后的路径
-});
-```
-
-css 压缩
-
-`npm install --save-dev gulp-minify-css`
-
-```
-var gulp = require('gulp'),
-    minifyCss = require("gulp-minify-css");
-
-gulp.task('minify-css', function () {
-    gulp.src('css/*.css') // 要压缩的css文件
-    .pipe(minifyCss()) //压缩css
-    .pipe(gulp.dest('dist/css'));
-});
-```
-
-html 压缩
-
-`npm install --save-dev gulp-minify-html`
-
-```
-var gulp = require('gulp'),
-    minifyHtml = require("gulp-minify-html");
-
-gulp.task('minify-html', function () {
-    gulp.src('html/*.html') // 要压缩的html文件
-    .pipe(minifyHtml()) //压缩
-    .pipe(gulp.dest('dist/html'));
-});
-```
-
-文件合并
-
-`npm install --save-dev gulp-concat`
-
-```
-var gulp = require('gulp'),
-    concat = require("gulp-concat");
-
-gulp.task('concat', function () {
-    gulp.src('js/*.js')  //要合并的文件
-    .pipe(concat('all.js'))  // 合并匹配到的js文件并命名为 "all.js"
-    .pipe(gulp.dest('dist/js'));
-});
-```
-
-less 和 sass 的编译
-
-`npm install --save-dev gulp-less`
-
-```
-var gulp = require('gulp'),
-    less = require("gulp-less");
-
-gulp.task('compile-less', function () {
-    gulp.src('less/*.less')
-    .pipe(less())
-    .pipe(gulp.dest('dist/css'));
-});
-```
-
-`npm install --save-dev gulp-sass`
-
-```
-var gulp = require('gulp'),
-    sass = require("gulp-sass");
-
-gulp.task('compile-sass', function () {
-    gulp.src('sass/*.sass')
-    .pipe(sass())
-    .pipe(gulp.dest('dist/css'));
-});
-```
-
-图片压缩
-
-`npm install --save-dev gulp-imagemin`
-
-```
-var gulp = require('gulp');
-var imagemin = require('gulp-imagemin');
-var pngquant = require('imagemin-pngquant'); //png图片压缩插件
-
-gulp.task('default', function () {
-    return gulp.src('src/images/*')
-        .pipe(imagemin({
-            progressive: true,
-            use: [pngquant()] //使用pngquant来压缩png图片
-        }))
-        .pipe(gulp.dest('dist'));
-});
-```
 
 ## vite
 
