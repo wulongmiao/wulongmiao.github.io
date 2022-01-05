@@ -80,11 +80,13 @@ function hello(): void {
     alert("Hello Runoob");
 }
 
+object
+
+unknown
+
 null undefined
 
 never
-
-object
 ```
 
 ## 联合类型
@@ -104,6 +106,15 @@ interface SquareConfig {
   width?: number;
 }
 
+```
+
+## 高级类型(type)
+
+```
+type Methods = 'GET' | 'POST' | 'PUT' | 'DELETE'
+let method: Methods
+method = 'PUT' // OK
+method = 'aaa' // error
 ```
 
 ## 泛型
