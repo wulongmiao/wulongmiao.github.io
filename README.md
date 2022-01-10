@@ -5,7 +5,7 @@
 
 ## 博客地址
 
-[个人博客](https://www.daoshangfei.top.com "个人博客")
+[个人博客](https://www.daoshangfei.top "个人博客")
 
 ## 说明
 
