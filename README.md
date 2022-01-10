@@ -1,12 +1,11 @@
 ## 技术栈
 1. GitHub Jekyll
 2. Bootstrap
-## 文件夹说明
-* 图片文件:img
-* Bootstrap
-* posts:文章库
-* layouts:页面模板
-* 页面：几个主要界面
-* includes:头文件
-* less:css扩展语言脚本
-* js:javascript脚本
+
+## 博客地址
+
+[![Backers on Open Collective](https://opencollective.com/ant-design-pro-vue/backers/badge.svg)](#backers)
+
+## 说明
+
+如有转载，请注明出处
