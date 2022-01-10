@@ -1,10 +1,11 @@
 ## 技术栈
+
 1. GitHub Jekyll
 2. Bootstrap
 
 ## 博客地址
 
-[![Backers on Open Collective](https://opencollective.com/ant-design-pro-vue/backers/badge.svg)](#backers)
+[个人博客](https://www.daoshangfei.top.com "个人博客")
 
 ## 说明
 
