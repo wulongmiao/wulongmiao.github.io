@@ -1,6 +1,6 @@
 ---
 layout: post
-title: webpack,vite使用
+title: webpack,vite入门
 date: 2020-10-30
 categories: 前端
 tags: [前端开发, webpack, vite]
@@ -316,6 +316,8 @@ module.exports = {
 改变文件内容后重新打包时，文件名不同而内容越来越多
 
 `cnpm install clean-webpack-plugin --save-dev`
+
+- - -
 
 ## vite
 
