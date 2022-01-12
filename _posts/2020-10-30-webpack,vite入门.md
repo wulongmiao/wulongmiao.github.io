@@ -139,7 +139,7 @@ module.exports = {
 };
 ```
 
-##### css 模块
+#### css 模块
 
 `npm install --save-dev style-loader css-loader`
 
@@ -176,7 +176,7 @@ module.exports = {
 };
 ```
 
-##### css 预处理器
+#### css 预处理器
 
 CSS 的处理平台-PostCSS 和 babel 一样也是独立于 webpack 的平台，能够一起工作
 `npm install --save-dev postcss-loader autoprefixer`
@@ -279,7 +279,6 @@ module.exports = {
         new ExtractTextPlugin("style.css") // 分离CSS和JS文件
         new webpack.optimize.OccurrenceOrderPlugin(), // 分析和优先考虑使用最多的模块，并为它们分配最小的ID
         new webpack.BannerPlugin('版权所有，翻版必究'),
-
     ],
 };
 ```
