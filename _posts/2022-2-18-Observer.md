@@ -1,13 +1,6 @@
-<!--
- * @Author: wulongmiao
- * @Date: 2022-02-18 14:24:49
- * @LastEditors: wulongmiao
- * @LastEditTime: 2022-02-18 14:57:58
- * @Description:test
--->
 ---
 layout: post
-title: node入门
+title: Observer
 date: 2021-9-5
 categories: 前端
 tags: [前端开发,observer]
@@ -59,18 +52,18 @@ resizeObserver.observe(dom);
 ```
     const performanceObserver = new PerformanceObserver(items => {
       items.getEntries().forEach(item => {
-        console.log(item);// 上报
+        console.log(item);
       })
     });
     performanceObserver.observe({entryTypes: ['resource', 'mark', 'measure']});
 ```
 
-#### mutationObserver
-监听元素大小变化
+#### ReportingObserver
+监听过时的 api、浏览器干预等报告等的打印
 ```
 const reportingObserver = new ReportingObserver((reports, observer) => {
     for (const report of reports) {
-        console.log(report.body);//上报
+        console.log(report.body);
     }
 }, {types: ['intervention', 'deprecation']});
 
