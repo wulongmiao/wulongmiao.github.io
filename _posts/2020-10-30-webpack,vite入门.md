@@ -96,9 +96,9 @@ npm run server
 ```
 Loaders需要单独安装并且需要在webpack.config.js中的modules关键字下进行配置，Loaders的配置包括以下几方面：
 加载时，数组从尾部开始执行
-test：一个用以匹配loaders所处理文件的拓展名的正则表达式（必须）
-use:[ loader：loader的名称（必须）]
-include/exclude:手动添加必须处理的文件（文件夹）或屏蔽不需要处理的文件（文件夹）（可选）
+test：一个用以匹配loaders所处理文件的拓展名的正则表达式(必须)
+use:[ loader：loader的名称(必须)]
+include/exclude:手动添加必须处理的文件(文件夹)或屏蔽不需要处理的文件(文件夹)(可选)
 query：为loaders提供额外的设置选项
 ```
 
@@ -239,7 +239,7 @@ module.exports = {
 
 ### 插件(Plugins)
 
-插件（Plugins）是用来拓展 Webpack 功能,在整个构建过程中生效,类似于谷歌插件
+插件(Plugins)是用来拓展 Webpack 功能,在整个构建过程中生效,类似于谷歌插件
 
 ```
 const webpack = require('webpack');
@@ -287,7 +287,7 @@ module.exports = {
 
 ### 缓存
 
-使用缓存的最好方法是保证你的文件名和文件内容是匹配的（内容改变，名称相应改变）
+使用缓存的最好方法是保证你的文件名和文件内容是匹配的(内容改变，名称相应改变)
 
 ```
 const webpack = require('webpack');
