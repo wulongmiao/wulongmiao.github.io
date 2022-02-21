@@ -9,6 +9,8 @@ tags: [前端开发, webpack, vite]
 ## webpack
 
 webpack 识别一个入口文件，然后分析路由，模块化，最后打包，服务器启动
+
+多进程构建,代码压缩,缓存,exclude,include缩小搜索/构建范围
 <img src="/img/webpack.png">
 
 打包原理
