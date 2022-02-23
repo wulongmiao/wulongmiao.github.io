@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Observer
-date: 2021-9-5
+date: 2022-2-18
 categories: 前端
 tags: [前端开发,observer]
 ---
