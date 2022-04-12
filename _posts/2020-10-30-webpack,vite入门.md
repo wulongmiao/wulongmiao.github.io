@@ -41,6 +41,46 @@ webpack 识别一个入口文件，然后分析路由，模块化，最后打包
    npm run {script name}
 ```
 
+### webpack优化
+
+#### 构建时间优化
+```
+多进程打包 thread-loader
+将thread-loader放在费资源loader前面
+
+缓存cache-loader二次构建速度提升
+// webpack.base.js
+
+{
+        test: /\.js$/,
+        use: [
+          'cache-loader',
+          'thread-loader',
+          'babel-loader'
+        ],
+},
+
+热更新插件
+
+善用exclude & include
+快速定位位错误位置source-map
+构建体积分析webpack-bundle-analyzer
+```
+
+#### 打包体积优化
+```
+css压缩插件
+js压缩插件
+静态资源压缩
+```
+
+#### 用户体验优化
+```
+模块懒加载,首屏请求所有资源,单页应用首屏加载慢,分块按需加载,提升首屏性能
+gzip资源减少传输时间,客户端解析时间开销增加
+```
+
+
 ### 自动构建
 
 ```
@@ -286,37 +326,6 @@ module.exports = {
 ```
 
 `npm install --save-dev extract-text-webpack-plugin`
-
-### 缓存
-
-使用缓存的最好方法是保证你的文件名和文件内容是匹配的(内容改变，名称相应改变)
-
-```
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CleanWebpackPlugin = require("clean-webpack-plugin");
-
-module.exports = {
-
-    output: {
-        path: __dirname + "/build",
-        filename: "bundle-[hash].js"
-    },
-     plugins: [
-    ...// 这里是之前配置的其它各种插件
-    new CleanWebpackPlugin('build/*.*', {
-      root: __dirname,
-      verbose: true,
-      dry: false
-  })
-  ]
-};
-```
-
-改变文件内容后重新打包时，文件名不同而内容越来越多
-
-`cnpm install clean-webpack-plugin --save-dev`
 
 - - -
 
