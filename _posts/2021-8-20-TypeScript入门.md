@@ -110,6 +110,7 @@ interface SquareConfig {
 
 ## 高级类型(type)
 
+和interface功能类型,但是不能实现,接口不能声明联合类型
 ```
 type Methods = 'GET' | 'POST' | 'PUT' | 'DELETE'
 let method: Methods
