@@ -69,15 +69,16 @@ webpack 识别一个入口文件，然后分析路由，模块化，最后打包
 
 #### 打包体积优化
 ```
-css压缩插件
-js压缩插件
-静态资源压缩
+css压缩插件css-minimizer-webpack-plugin
+js压缩插件terser-webpack-plugin
+html压缩html-webpack-plugin
+图片压缩image-webpack-loader
 ```
 
 #### 用户体验优化
 ```
 模块懒加载,首屏请求所有资源,单页应用首屏加载慢,分块按需加载,提升首屏性能
-gzip插件资源减少传输时间,客户端解析时间开销增加
+gzip插件后端还得设置，运输过程压缩，减少传输时间,客户端解析时间开销增加
 ```
 
 
@@ -133,7 +134,7 @@ npm run server
 
 ### loaders
 
-用于对模块的源代码进行转换，import时预处理文件
+用于对模块的源代码进行转换，import时预处理文件，简单理解为处理特定文件的
 
 ```
 Loaders需要单独安装并且需要在webpack.config.js中的modules关键字下进行配置，Loaders的配置包括以下几方面：
