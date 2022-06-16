@@ -12,7 +12,7 @@
       var size = 20;
       //游戏结束标志
       var isOver = false;
-      //7个不同形状的方块组，每组由四个方块构成(left,top,left,top,left,top,left,top)
+      //7个不同形状的方块组,每组由四个方块构成(left,top,left,top,left,top,left,top)
       var shapes =
         "0,1,1,1,2,1,3,1;1,0,1,1,1,2,2,2;2,0,2,1,2,2,1,2;0,1,1,1,1,2,2,2;1,2,2,2,2,1,3,1;1,1,2,1,1,2,2,2;0,2,1,2,1,1,2,2".split(
           ";"
@@ -36,7 +36,7 @@
           createElm("div", myCss),
           createElm("div", myCss),
         ];
-        //初始化预告，创建4个div
+        //初始化预告,创建4个div
         if (!shape) {
           this.divs2 = [
             createElm("div", myCss),
@@ -52,7 +52,7 @@
         this.refresh = function () {
           this.x = typeof x != "undefined" ? x : 3;
           this.y = typeof y != "undefined" ? y : 1;
-          // 如果有传参，优先使用参数的，如果有预告，优先使用预告，都没有就自己生成
+          // 如果有传参,优先使用参数的,如果有预告,优先使用预告,都没有就自己生成
           if (shape) this.shape = shape;
           else if (this.shape2) this.shape = this.shape2;
           else
@@ -116,7 +116,7 @@
             this.refresh();
           }
         };
-        // 逆时针旋转方块，每一个方块top和left互换,3-新top
+        // 逆时针旋转方块,每一个方块top和left互换,3-新top
         this.rotate = function () {
           var newShape = [
             this.shape[1],
@@ -169,13 +169,13 @@
           }
           return true;
         };
-        // 用灰色方块替换红色方块，并在容器中记录灰色方块的位置
+        // 用灰色方块替换红色方块,并在容器中记录灰色方块的位置
         this.fixShape = function (x, y, shape) {
           var t = new Tetris("d", x, y, shape);
           for (var i = 0; i < 8; i += 2)
             this[(shape[i + 1] - -y) * 100 - -(shape[i] - -x)] = t.divs[i / 2];
         };
-        // 遍历整个容器，判断是否可以消除
+        // 遍历整个容器,判断是否可以消除
         this.findFull = function () {
           var s = 0;
           for (var m = 0; m < row; m++) {
@@ -241,13 +241,13 @@
                 tetris.hMove(1);
                 break;
               default:
-                alert("输入非法，请阅读游戏说明！");
+                alert("输入非法,请阅读游戏说明！");
                 break;
             }
           };
           timer = setInterval("if(!isOver) tetris.vMove(1)", 500);
         } else if (a.innerHTML == "结束") {
-          alert("游戏结束，再来一局！");
+          alert("游戏结束,再来一局！");
           clearInterval(timer);
           window.location.reload();
         }
@@ -270,8 +270,8 @@
     <div class="f"></div>
     <div class="e"></div>
     <div class="sm">
-      游戏说明：点击开始进行游戏。键盘D或者→(end)键方块左移，键盘A或者←(home)键方块右移，键盘S或者↓(pg
-      dn)键方块加速下落移，键盘W或者↑(pg up)键方块翻转
+      游戏说明：点击开始进行游戏。键盘D或者→(end)键方块左移,键盘A或者←(home)键方块右移,键盘S或者↓(pg
+      dn)键方块加速下落移,键盘W或者↑(pg up)键方块翻转
     </div>
     <button id="bt" onclick="init()">开始</button>
     <button id="purse" onclick="con_timer()">暂停</button>

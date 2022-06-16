@@ -19,7 +19,7 @@ const intersectionObserverMY = new IntersectionObserver(
         entries.forEach(item => {
             console.log(item.target, item.intersectionRatio)
         })
-    }, {// 当可视区域到达数组位置时，触发事件threshold: [0.5, 1]}
+    }, {// 当可视区域到达数组位置时,触发事件threshold: [0.5, 1]}
     );
 
 intersectionObserverMY.observe( dom );

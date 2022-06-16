@@ -37,7 +37,7 @@ string
 ```
 let name: string = "Runoob";
 let years: number = 5;
-let words: string = `您好，今年是 ${ name } 发布 ${ years + 1} 周年`;
+let words: string = `您好,今年是 ${ name } 发布 ${ years + 1} 周年`;
 ```
 
 boolean
@@ -91,7 +91,7 @@ never
 
 ## 联合类型
 
-通过管道(|)将变量设置多种类型，赋值时可以根据设置的类型来赋值
+通过管道(|)将变量设置多种类型,赋值时可以根据设置的类型来赋值
 
 ```
 var val:string|number
@@ -121,7 +121,7 @@ method = 'aaa' // error
 ## 泛型
 
 ```
-类似于any，但是不会丢失信息
+类似于any,但是不会丢失信息
 
 function loggingIdentity<T>(arg: T): T {
     console.log(arg.length);  // Error: T doesn't have .length
@@ -154,7 +154,7 @@ myGenericNumber.zeroValue = 0;
 myGenericNumber.add = function(x, y) { return x + y; };
 
 泛型约束
-需要传入符合约束类型的值，必须包含必须的属性
+需要传入符合约束类型的值,必须包含必须的属性
 interface Lengthwise {
     length: number;
 }
@@ -176,21 +176,21 @@ readonly
 get
 set
 static
-抽象类 abstract不同于接口，抽象类可以包含成员的实现细节
+抽象类 abstract不同于接口,抽象类可以包含成员的实现细节
 
 接口能用的地方类都能使用
 ```
 
 ## 接口
 
-接口中我们可以将数组的索引值和元素设置为不同类型，索引值可以是数字或字符串
+接口中我们可以将数组的索引值和元素设置为不同类型,索引值可以是数字或字符串
 
 ```
 属性严格检查
 只读属性 readonly
 可选属性 ?
 索引签名 [index:number || string]
-实现 implements接口继承拥有私有或受保护的成员的类时，这个接口类型只能被这个类或其子类实现
+实现 implements接口继承拥有私有或受保护的成员的类时,这个接口类型只能被这个类或其子类实现
 继承 extends
 
 ```

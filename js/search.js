@@ -62,13 +62,13 @@ function searchConfirm() {
 }
 //兼容性(IE低版本)
 var xhr = new XMLHttpRequest() || new ActiveXObject('Microsoft.XMLHTTP');
-// 请求初始化 /feed.xml代表在服务器的位置，true异步，get安全，大数据传输
+// 请求初始化 /feed.xml代表在服务器的位置,true异步,get安全,大数据传输
 xhr.open('get', '/feed.xml', true);
 //开始发送请求到服务器
 xhr.send();
-//当readyState改变时，触发事件onreadystatechange
+//当readyState改变时,触发事件onreadystatechange
 xhr.onreadystatechange = function () {
-    //响应已完成，且请求成功
+    //响应已完成,且请求成功
     if (xhr.readyState == 4 && xhr.status == 200) {
         arrItems = xhr.responseXML.getElementsByTagName('item');
         itemLength = arrItems.length;
@@ -105,11 +105,11 @@ function searchMatching(title, content, input) {
             }
             indexItem.push(i);  // 保存匹配值的索引
             var indexContent = arr.search(input);
-            // 此时 input 为 RegExp 格式 /input/i，转换为原 input 字符串长度
+            // 此时 input 为 RegExp 格式 /input/i,转换为原 input 字符串长度
             var l = input.toString().length - 3;
             var step = 10;
             
-            // 将匹配到内容的地方进行黄色标记，并包括周围一定数量的文本
+            // 将匹配到内容的地方进行黄色标记,并包括周围一定数量的文本
             arrResults.push(arr.slice(indexContent - step, indexContent) +
                 '<mark>' + arr.slice(indexContent, indexContent + l) + '</mark>' +
                 arr.slice(indexContent + l, indexContent + l + step));

@@ -8,20 +8,20 @@ tags: [前端开发, webpack, vite]
 
 ## webpack
 
-webpack 识别一个入口文件，然后分析路由，模块化，最后打包，服务器启动
+webpack 识别一个入口文件,然后分析路由,模块化,最后打包,服务器启动
 
 多进程构建,代码压缩,缓存,exclude,include缩小搜索/构建范围
 <img src="/img/webpack.png">
 
 打包原理
 
-1.先逐级递归识别依赖，构建依赖图谱
+1.先逐级递归识别依赖,构建依赖图谱
 
 2.将代码转化成 AST 抽象语法树
 
 3.在 AST 阶段中去处理代码
 
-4.把 AST 抽象语法树变成浏览器可以识别的代码， 然后输出
+4.把 AST 抽象语法树变成浏览器可以识别的代码, 然后输出
 
 ### 初始化
 
@@ -34,7 +34,7 @@ webpack 识别一个入口文件，然后分析路由，模块化，最后打包
 
 2. 快捷执行打包任务
     通过 npm init 初始化一个package.json文件
-    在 package.json 文件中的 scripts 配置项中，添加一个脚本命令
+    在 package.json 文件中的 scripts 配置项中,添加一个脚本命令
 
 3. 构建
    npm start
@@ -78,7 +78,7 @@ html压缩html-webpack-plugin
 #### 用户体验优化
 ```
 模块懒加载,首屏请求所有资源,单页应用首屏加载慢,分块按需加载,提升首屏性能
-gzip插件后端还得设置，运输过程压缩，减少传输时间,客户端解析时间开销增加
+gzip插件后端还得设置,运输过程压缩,减少传输时间,客户端解析时间开销增加
 ```
 
 
@@ -100,7 +100,7 @@ congfig中配置  devtool: 'source-map' |'cheap-module-source-map' |  'eval-sour
 
 ### 本地服务器
 
-监听代码需要安装组件，基于 node.js
+监听代码需要安装组件,基于 node.js
 `npm install --save-dev webpack-dev-server`
 
 ```
@@ -122,7 +122,7 @@ module.exports = {
   }
 }
 
-package.json中的scripts对象中添加如下命令，用以开启本地服务器：
+package.json中的scripts对象中添加如下命令,用以开启本地服务器：
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack",
@@ -134,11 +134,11 @@ npm run server
 
 ### loaders
 
-用于对模块的源代码进行转换，import时预处理文件，简单理解为处理特定文件的
+用于对模块的源代码进行转换,import时预处理文件,简单理解为处理特定文件的
 
 ```
-Loaders需要单独安装并且需要在webpack.config.js中的modules关键字下进行配置，Loaders的配置包括以下几方面：
-加载时，数组从尾部开始执行
+Loaders需要单独安装并且需要在webpack.config.js中的modules关键字下进行配置,Loaders的配置包括以下几方面：
+加载时,数组从尾部开始执行
 test：一个用以匹配loaders所处理文件的拓展名的正则表达式(必须)
 use:[ loader：loader的名称(必须)]
 include/exclude:手动添加必须处理的文件(文件夹)或屏蔽不需要处理的文件(文件夹)(可选)
@@ -147,7 +147,7 @@ query：为loaders提供额外的设置选项
 
 #### babel
 
-// npm 一次性安装多个依赖模块，模块之间用空格隔开
+// npm 一次性安装多个依赖模块,模块之间用空格隔开
 `npm install --save-dev babel-core babel-loader babel-preset-env babel-preset-react`
 
 ```
@@ -208,7 +208,7 @@ module.exports = {
                     }, {
                         loader: "css-loader"
                         options: {
-                            modules: true, // 指定启用css modules类名，动画名默认都只作用于当前模块
+                            modules: true, // 指定启用css modules类名,动画名默认都只作用于当前模块
                             localIdentName: '[name]__[local]--[hash:base64:5]' // 指定css的类名格式
                         }
                     }
@@ -221,7 +221,7 @@ module.exports = {
 
 #### css 预处理器
 
-CSS 的处理平台-PostCSS 和 babel 一样也是独立于 webpack 的平台，能够一起工作
+CSS 的处理平台-PostCSS 和 babel 一样也是独立于 webpack 的平台,能够一起工作
 `npm install --save-dev postcss-loader autoprefixer`
 
 ```
@@ -320,8 +320,8 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),// 热加载插件
         new webpack.optimize.UglifyJsPlugin(),// plugins压缩JS代码
         new ExtractTextPlugin("style.css") // 分离CSS和JS文件
-        new webpack.optimize.OccurrenceOrderPlugin(), // 分析和优先考虑使用最多的模块，并为它们分配最小的ID
-        new webpack.BannerPlugin('版权所有，翻版必究'),
+        new webpack.optimize.OccurrenceOrderPlugin(), // 分析和优先考虑使用最多的模块,并为它们分配最小的ID
+        new webpack.BannerPlugin('版权所有,翻版必究'),
     ],
 };
 ```
