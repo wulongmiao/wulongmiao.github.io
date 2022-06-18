@@ -118,7 +118,7 @@ function searchMatching(title, content, input) {
 
     // 输出总共匹配到的数目
     var totalDiv = tmpDiv.cloneNode(true);
-    totalDiv.innerHTML = '输入匹配：<b>' + indexItem.length + '</b> 项';
+    totalDiv.innerHTML = '输入匹配:<b>' + indexItem.length + '</b> 项';
     searchResults.appendChild(totalDiv);
 
     // 未匹配到内容的情况

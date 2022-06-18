@@ -8,7 +8,7 @@ tags: [前端开发, webpack, vite]
 
 ## webpack
 
-webpack 识别一个入口文件,然后分析路由,模块化,最后打包,服务器启动
+webpack 识别一个或者多个入口文件,然后分析路由,模块化,最后打包,服务器启动
 
 多进程构建,代码压缩,缓存,exclude,include缩小搜索/构建范围
 <img src="/img/webpack.png">
@@ -45,26 +45,15 @@ webpack 识别一个入口文件,然后分析路由,模块化,最后打包,服�
 
 #### 构建时间优化
 ```
-多进程打包 thread-loader
-将thread-loader放在费资源loader前面
+多进程打包 thread-loader:将thread-loader放在费资源loader前面
 
-缓存cache-loader二次构建速度提升
-// webpack.base.js
+缓存cache-loader二次构建速度提升: 放在其他loaders前面,将缓存后面的loaders
 
-{
-        test: /\.js$/,
-        use: [
-          'cache-loader',
-          'thread-loader',
-          'babel-loader'
-        ],
-},
+快速定位位错误位置source-map: devtool中配置
 
-热更新插件
+热更新插件HotModuleReplacementPlugin
 
-善用exclude & include
-快速定位位错误位置source-map插件
-构建体积分析webpack-bundle-analyzer插件
+构建体积分析webpack-bundle-analyzer插件:可视化分析模块打包后的大小,gzip压缩后的大小,模块依赖关系
 ```
 
 #### 打包体积优化
@@ -73,12 +62,13 @@ css压缩插件css-minimizer-webpack-plugin
 js压缩插件terser-webpack-plugin
 html压缩html-webpack-plugin
 图片压缩image-webpack-loader
+无用代码删除tree-sharking: webpack5生产模式默认开启,babel不能转译成es6一下的代码,要支持es6 module才有效
 ```
 
 #### 用户体验优化
 ```
-模块懒加载,首屏请求所有资源,单页应用首屏加载慢,分块按需加载,提升首屏性能
-gzip插件后端还得设置,运输过程压缩,减少传输时间,客户端解析时间开销增加
+模块懒加载:首屏请求所有资源,单页应用首屏加载慢,分块按需加载,提升首屏性能
+gzip压缩插件 CompressionWebpackPlugin :后端还得设置,运输过程压缩,减少传输时间,客户端解析时间开销增加,Accept-Encoding:gzip来标识对压缩的支持
 ```
 
 
@@ -104,16 +94,18 @@ congfig中配置  devtool: 'source-map' |'cheap-module-source-map' |  'eval-sour
 `npm install --save-dev webpack-dev-server`
 
 ```
-config文件中：
+config文件中:
 module.exports = {
+  // 配置source-map
   devtool: 'eval-source-map',
-
+  // 入口
   entry:  __dirname + "/app/main.js",
+  // 输出
   output: {
     path: __dirname + "/public",
     filename: "bundle.js"
   },
-
+// 本地服务器
   devServer: {
     contentBase: "./public",//本地服务器所加载的页面所在的目录
     historyApiFallback: true,//不跳转
@@ -122,7 +114,7 @@ module.exports = {
   }
 }
 
-package.json中的scripts对象中添加如下命令,用以开启本地服务器：
+package.json中的scripts对象中添加如下命令,用以开启本地服务器:
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack",
@@ -134,15 +126,15 @@ npm run server
 
 ### loaders
 
-用于对模块的源代码进行转换,import时预处理文件,简单理解为处理特定文件的
+webpack只能处理js,json文件,loaders处理特定类型文件,转换成相应模块,在bundle前打包相应模块
 
 ```
-Loaders需要单独安装并且需要在webpack.config.js中的modules关键字下进行配置,Loaders的配置包括以下几方面：
+Loaders需要单独安装并且需要在webpack.config.js中的modules关键字下进行配置,Loaders的配置包括以下几方面:
 加载时,数组从尾部开始执行
-test：一个用以匹配loaders所处理文件的拓展名的正则表达式(必须)
-use:[ loader：loader的名称(必须)]
+test:一个用以匹配loaders所处理文件的拓展名的正则表达式(必须)
+use:[ loader:loader的名称(必须)]
 include/exclude:手动添加必须处理的文件(文件夹)或屏蔽不需要处理的文件(文件夹)(可选)
-query：为loaders提供额外的设置选项
+query:为loaders提供额外的设置选项
 ```
 
 #### babel
