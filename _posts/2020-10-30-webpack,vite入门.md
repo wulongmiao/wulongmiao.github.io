@@ -67,7 +67,7 @@ html压缩html-webpack-plugin
 
 #### 用户体验优化
 ```
-模块懒加载:首屏请求所有资源,单页应用首屏加载慢,分块按需加载,提升首屏性能
+模块懒加载splitChunksPlugin:首屏请求所有资源,单页应用首屏加载慢,分块按需加载,提升首屏性能
 gzip压缩插件 CompressionWebpackPlugin :后端还得设置,运输过程压缩,减少传输时间,客户端解析时间开销增加,Accept-Encoding:gzip来标识对压缩的支持
 ```
 
@@ -112,6 +112,14 @@ module.exports = {
     inline: true//实时刷新
     port:"8080 "//监听端口
   }
+// 模块切分
+optimization:{
+splitChunks:{
+    chunks:"all",//默认sync
+    minSize:''.
+    maxSize:'',
+}
+}
 }
 
 package.json中的scripts对象中添加如下命令,用以开启本地服务器:
