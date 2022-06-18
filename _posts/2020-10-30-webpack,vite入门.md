@@ -71,23 +71,6 @@ html压缩html-webpack-plugin
 gzip压缩插件 CompressionWebpackPlugin :后端还得设置,运输过程压缩,减少传输时间,客户端解析时间开销增加,Accept-Encoding:gzip来标识对压缩的支持
 ```
 
-
-### 自动构建
-
-```
-let files = require.context(查找url,boolean是否查找子目录,匹配的正则):Object
-files.keys()==Object.keys() 返回匹配成功模块的名字组成的数组
-```
-
-### 生成 Source Maps
-
-```
-Source Maps找到错误代码的位置
-开发环境eval-source-map  cheap-module-eval-source-map
-生产环境cheap-module-source-map
-congfig中配置  devtool: 'source-map' |'cheap-module-source-map' |  'eval-source-map' | 'cheap-module-eval-source-map'
-```
-
 ### 本地服务器
 
 监听代码需要安装组件,基于 node.js
@@ -333,6 +316,8 @@ module.exports = {
 ## vite
 
 预构建依赖,等待 HTTP 请求,构建代码,vite 充分利用缓存加快重载
+
+打包基于rollup,构建基于esbuild
 <img src="/img/vite.png">
 
 ### 初始化
@@ -342,3 +327,47 @@ module.exports = {
 `$ npm init vite@latest`
 
 `$ yarn create vite`
+
+
+### 官方提供插件
+
+```
+// vue
+import vue from '@vitejs/plugin-vue'
+
+export default {
+  plugins: [vue()]
+}
+
+
+//vue jsx
+import vueJsx from '@vitejs/plugin-vue-jsx'
+
+export default {
+  plugins: [
+    vueJsx({
+      // options are passed on to @vue/babel-plugin-jsx
+    })
+  ]
+}
+
+// react
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()]
+})
+
+
+//babel
+import legacy from '@vitejs/plugin-legacy'
+
+export default {
+  plugins: [
+    legacy({
+      targets: ['defaults', 'not IE 11']
+    })
+  ]
+}
+```
