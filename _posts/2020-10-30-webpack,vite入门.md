@@ -88,6 +88,7 @@ module.exports = {
     path: __dirname + "/public",
     filename: "bundle.js"
   },
+  mode:"produciton development"
 // 本地服务器
   devServer: {
     contentBase: "./public",//本地服务器所加载的页面所在的目录
@@ -98,19 +99,13 @@ module.exports = {
 // 模块切分
 optimization:{
 splitChunks:{
-    chunks:"all",//默认sync
-    minSize:''.
-    maxSize:'',
+    chunks:"all", // 对同步代码还是异步代码进行处理
+    minSize:'', // 拆分包的大小, 至少为minSize
+    maxSize:'', // 将大于maxSize的包，拆分为不小于minSize的包
+    minChunks：1, // 被引入的次数，默认是1
 }
 }
 }
-
-package.json中的scripts对象中添加如下命令,用以开启本地服务器:
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack",
-    "server": "webpack-dev-server --open"
-  },
 
 npm run server
 ```
