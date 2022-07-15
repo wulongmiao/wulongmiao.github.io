@@ -8,20 +8,10 @@ tags: [前端开发, webpack, vite]
 
 ## webpack
 
-webpack 识别一个或者多个入口文件,然后分析路由,模块化,最后打包,服务器启动
+webpack 识别所有入口文件,然后递归构建依赖图谱,模块化处理相应的模块,打包成chunk
 
 多进程构建,代码压缩,缓存,exclude,include缩小搜索/构建范围
 <img src="/img/webpack.png">
-
-打包原理
-
-1.先逐级递归识别依赖,构建依赖图谱
-
-2.将代码转化成 AST 抽象语法树
-
-3.在 AST 阶段中去处理代码
-
-4.把 AST 抽象语法树变成浏览器可以识别的代码, 然后输出
 
 ### 初始化
 
@@ -71,18 +61,25 @@ html压缩html-webpack-plugin
 gzip压缩插件 CompressionWebpackPlugin :后端还得设置,运输过程压缩,减少传输时间,客户端解析时间开销增加,Accept-Encoding:gzip来标识对压缩的支持
 ```
 
-### 本地服务器
-
-监听代码需要安装组件,基于 node.js
-`npm install --save-dev webpack-dev-server`
+### 常见配置
 
 ```
-config文件中:
 module.exports = {
   // 配置source-map
-  devtool: 'eval-source-map',
+  devtool: dev: 'eval-source-map', "eval"
+           pro: "none","source-map"
   // 入口
-  entry:  __dirname + "/app/main.js",
+  entry: {
+    index: {
+      import: './src/index.js',
+      dependOn: 'lodash'
+    },
+    a: {
+      import: './src/a.js',
+      dependOn: 'lodash'
+    },
+    lodash: 'lodash'
+  }
   // 输出
   output: {
     path: __dirname + "/public",
@@ -99,15 +96,15 @@ module.exports = {
 // 模块切分
 optimization:{
 splitChunks:{
-    chunks:"all", // 对同步代码还是异步代码进行处理
+    chunks: initial 表示入口文件中非动态引入的模块,动态和静态导入打包到不同chunk
+            all 表示所有模块,动态导入和静态不超出包大小打包到同一个chunk
+            async 表示异步引入的模块
     minSize:'', // 拆分包的大小, 至少为minSize
     maxSize:'', // 将大于maxSize的包，拆分为不小于minSize的包
-    minChunks：1, // 被引入的次数，默认是1
+    minChunks：n, // 静态被引入的次数超过n打包
 }
 }
 }
-
-npm run server
 ```
 
 ### loaders
@@ -129,18 +126,6 @@ query:为loaders提供额外的设置选项
 `npm install --save-dev babel-core babel-loader babel-preset-env babel-preset-react`
 
 ```
-module.exports = {
-    entry: __dirname + "/app/main.js",//已多次提及的唯一入口文件
-    output: {
-        path: __dirname + "/public",//打包后的文件存放的地方
-        filename: "bundle.js"//打包后输出文件的文件名
-    },
-    devtool: 'eval-source-map',
-    devServer: {
-        contentBase: "./public",//本地服务器所加载的页面所在的目录
-        historyApiFallback: true,//不跳转
-        inline: true//实时刷新
-    },
     module: {
         rules: [
             {
@@ -157,7 +142,6 @@ module.exports = {
             }
         ]
     }
-};
 ```
 
 #### css 模块
@@ -165,10 +149,6 @@ module.exports = {
 `npm install --save-dev style-loader css-loader`
 
 ```
-//使用
-module.exports = {
-
-   ...
     module: {
         rules: [
             {
@@ -194,7 +174,6 @@ module.exports = {
             }
         ]
     }
-};
 ```
 
 #### css 预处理器
@@ -203,9 +182,6 @@ CSS 的处理平台-PostCSS 和 babel 一样也是独立于 webpack 的平台,�
 `npm install --save-dev postcss-loader autoprefixer`
 
 ```
-//webpack.config.js
-module.exports = {
-    ...
     module: {
         rules: [
          {
@@ -227,13 +203,6 @@ module.exports = {
         ],
       },
             {
-                test: /(\.jsx|\.js)$/,
-                use: {
-                    loader: "babel-loader"
-                },
-                exclude: /node_modules/
-            },
-            {
                 test: /\.css$/,
                 use: [
                     {
@@ -250,7 +219,6 @@ module.exports = {
                 ]
             }
         ]
-    }
 }
 ```
 
@@ -265,43 +233,10 @@ module.exports = {
 ```
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-module.exports = {
-...
-    module: {
-        rules: [
-            {
-                test: /(\.jsx|\.js)$/,
-                use: {
-                    loader: "babel-loader"
-                },
-                exclude: /node_modules/
-            },
-            {
-                test: /\.css$/,
-                use: [
-                    {
-                        loader: "style-loader"
-                    }, {
-                        loader: "css-loader",
-                        options: {
-                            modules: true
-                        }
-                    }, {
-                        loader: "postcss-loader"
-                    }
-                ]
-            }
-        ]
-    },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),// 热加载插件
-        new webpack.optimize.UglifyJsPlugin(),// plugins压缩JS代码
-        new ExtractTextPlugin("style.css") // 分离CSS和JS文件
         new webpack.optimize.OccurrenceOrderPlugin(), // 分析和优先考虑使用最多的模块,并为它们分配最小的ID
-        new webpack.BannerPlugin('版权所有,翻版必究'),
     ],
-};
 ```
 
 `npm install --save-dev extract-text-webpack-plugin`
