@@ -8,7 +8,7 @@ tags: [前端开发, webpack, vite]
 
 ## webpack
 
-webpack 识别所有入口文件,然后递归构建依赖图谱,模块化处理相应的模块,打包成chunk
+webpack 启动构建初始化参数,加载插件,识别所有入口文件,然后根据入口文件递归处理模块并构建依赖图谱,打包成chunk
 
 多进程构建,代码压缩,缓存,exclude,include缩小搜索/构建范围
 <img src="/img/webpack.png">
@@ -67,7 +67,7 @@ gzip压缩插件 CompressionWebpackPlugin :后端还得设置,运输过程压缩
 module.exports = {
   // 配置source-map
   devtool: dev: 'eval-source-map', "eval"
-           pro: "none","source-map"
+           pro:"source-map"
   // 入口
   entry: {
     index: {
