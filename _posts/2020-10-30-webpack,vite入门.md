@@ -8,7 +8,7 @@ tags: [前端开发, webpack, vite]
 
 ## webpack
 
-webpack 启动构建初始化参数,加载插件,识别所有入口文件,然后根据入口文件递归处理模块并构建依赖图谱,打包成chunk
+根据配置初始化参数,加载插件,实例化webpack对象,调用run方法开始编译,识别所有入口文件,然后根据入口文件loader递归编译模块并构建依赖图谱,打包成chunk,输出到指定路径
 
 多进程构建,代码压缩,缓存,exclude,include缩小搜索/构建范围
 <img src="/img/webpack.png">
