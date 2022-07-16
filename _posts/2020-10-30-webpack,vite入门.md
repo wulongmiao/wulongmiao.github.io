@@ -115,9 +115,8 @@ webpack只能处理js,json文件,loaders处理特定类型文件,转换成相应
 Loaders需要单独安装并且需要在webpack.config.js中的modules关键字下进行配置,Loaders的配置包括以下几方面:
 加载时,数组从尾部开始执行
 test:一个用以匹配loaders所处理文件的拓展名的正则表达式(必须)
-use:[ loader:loader的名称(必须)]
+use:[{loader,options}]
 include/exclude:手动添加必须处理的文件(文件夹)或屏蔽不需要处理的文件(文件夹)(可选)
-query:为loaders提供额外的设置选项
 ```
 
 #### babel
@@ -143,88 +142,6 @@ query:为loaders提供额外的设置选项
         ]
     }
 ```
-
-#### css 模块
-
-`npm install --save-dev style-loader css-loader`
-
-```
-    module: {
-        rules: [
-            {
-                test: /(\.jsx|\.js)$/,
-                use: {
-                    loader: "babel-loader"
-                },
-                exclude: /node_modules/
-            },
-            {
-                test: /\.css$/,
-                use: [
-                    {
-                        loader: "style-loader"
-                    }, {
-                        loader: "css-loader"
-                        options: {
-                            modules: true, // 指定启用css modules类名,动画名默认都只作用于当前模块
-                            localIdentName: '[name]__[local]--[hash:base64:5]' // 指定css的类名格式
-                        }
-                    }
-                ]
-            }
-        ]
-    }
-```
-
-#### css 预处理器
-
-CSS 的处理平台-PostCSS 和 babel 一样也是独立于 webpack 的平台,能够一起工作
-`npm install --save-dev postcss-loader autoprefixer`
-
-```
-    module: {
-        rules: [
-         {
-        test: /\.less$/,
-        use: [{
-          loader: "style-loader" // creates style nodes from JS strings
-        }, {
-          loader: "css-loader" // translates CSS into CommonJS
-        }, {
-          loader: "less-loader" // compiles Less to CSS
-        }]
-      },
-      {
-        test: /\.sass$/,
-        use: [
-          'vue-style-loader',
-          'css-loader',
-          'sass-loader?indentedSyntax'
-        ],
-      },
-            {
-                test: /\.css$/,
-                use: [
-                    {
-                        loader: "style-loader"
-                    }, {
-                        loader: "css-loader",
-                        options: {
-                            modules: true
-                        }
-                    },
-                    {
-                        loader: "postcss-loader"
-                    }
-                ]
-            }
-        ]
-}
-```
-
-`npm install less-loader less --save-dev`
-
-`npm install sass-loader node-sass --save-dev`
 
 ### 插件(Plugins)
 
