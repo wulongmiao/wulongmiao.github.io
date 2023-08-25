@@ -116,6 +116,28 @@ type Methods = 'GET' | 'POST' | 'PUT' | 'DELETE'
 let method: Methods
 method = 'PUT' // OK
 method = 'aaa' // error
+
+
+type a = {
+  aa?:string | number
+  cc:string
+}
+type b = {
+  readonly bb?: string | number
+  dd?: string
+}
+
+// 交叉类型
+type x = a & b
+
+// 选中部分组成新类型
+type v = Pick<x, 'aa'>
+
+// 排除部分组成新类型
+type z = Omit<x, 'aa'>
+const aa: v = { aa: 22 }
+const bb: z = { cc: '22' }
+const cc: x = { cc: '22' }
 ```
 
 ## 泛型
