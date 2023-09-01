@@ -249,3 +249,85 @@ declare enum 声明全局枚举类型
 declare namespace 声明全局对象（含有子属性）
 interface 和 type 声明全局类型
 ```
+
+## 使用技巧
+
+#### 提取数组每一项类型
+
+```
+type ArrayType1 = Array<{
+    a: number
+    b: number
+}>
+type ArrayType2 = ({
+    a: number
+    b: number
+} | {
+    c: string
+    d: string
+})[]
+// 通过索引访问来获取,我们都知道数组的索引是 number 类型的
+type GetArrayOrTupleItemType1 = ArrayType1[number]
+// 得到
+type GetArrayOrTupleItemType1 = {
+    a: number
+    b: number
+}
+// 通过 infer 进行推导
+type GetArrayOrTupleItemType2 = ArrayType2 extends Array<infer U> ? U : never
+// 得到
+type GetArrayOrTupleItemType2 = {
+    a: number
+    b: number
+} | {
+    c: string
+    d: string
+}
+```
+
+#### 提取接口中的类型
+
+```
+interface A {
+    b: string
+    c: number
+    d: Array<{
+        e: symbol
+    }>
+}
+type B = A['b']
+type C = A['c']
+// 与上一小节的技巧配置使用
+type E = A['d'][number]['e']
+```
+
+#### const let类型推断
+
+```
+const a = 1 // 则 a 的类型就为 1
+const d = '2' // 则 a 的类型就是 '2'
+
+// b 的类型为 number,c 的类型为 string,这是由于右侧得到的类型即为 (number | string)[]
+const [b, c] = [1, '2']
+
+// d.e 的 类型 为 number,d.f 的类型 为 string,因为常量对象的属性是可以进行操作的,类型推导也会发生在初始化成员（对象属性）的过程中
+const d = {
+    e: 1,
+    f: '2'
+}
+
+let a = 1 // a 为 number 类型
+let b = '2' // b 为 string 类型
+```
+
+#### 断言as
+```
+尽量避免使用as any 推荐as unknown
+
+const a = {
+    b: 1
+}
+const c = (params: { b: 1 }) => {}
+
+c(a) // 报错:不能将类型“number”分配给类型“1”,在 b: 1 那一行最后加上 as const 即可解决
+```
