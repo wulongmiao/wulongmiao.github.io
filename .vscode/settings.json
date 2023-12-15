@@ -10,7 +10,6 @@ emmet快速开发
 */
 {
     "git.ignoreLimitWarning": true,
-    "workbench.activityBar.visible":true,
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
     "javascript.autoClosingTags": true,
@@ -21,8 +20,8 @@ emmet快速开发
     "typescript.updateImportsOnFileMove.enabled": "always",
     */
     "editor.codeActionsOnSave": {
-        "source.fixAll":true,
-        "addMissingImports":true
+        "source.fixAll": "explicit",
+        "addMissingImports": "explicit"
     },
     "emmet.includeLanguages": {
         "postcss": "css",
