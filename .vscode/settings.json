@@ -29,5 +29,6 @@ emmet快速开发
     },
     "emmet.syntaxProfiles": {"postcss":"css"},
     "emmet.triggerExpansionOnTab": true,
-    "workbench.editor.enablePreview": true
+    "workbench.editor.enablePreview": true,
+    "eggHelper.serverPort": 35684
 }
