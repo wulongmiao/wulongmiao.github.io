@@ -64,15 +64,17 @@ gzip压缩插件 CompressionWebpackPlugin :后端还得设置,运输过程压缩
 ### 常见配置
 
 ```
+module.exports = (env) => {}
+
 module.exports = {
   // 配置source-map
   devtool: dev: 'eval-source-map', "eval"
-           pro:"source-map"
+           pro:"source-map" "eval-cheap-module-source-map"
   // 入口
   entry: {
     index: {
       import: './src/index.js',
-      dependOn: 'lodash'
+      dependOn: 'lodash' // 共享模块
     },
     a: {
       import: './src/a.js',
@@ -83,11 +85,13 @@ module.exports = {
   // 输出
   output: {
     path: __dirname + "/public",
-    filename: "bundle.js"
+    pathinfo: false, // 不携带路径信息
+    filename: "[name].bundle.js"
   },
   mode:"produciton development"
 // 本地服务器
   devServer: {
+    static: './dist',
     contentBase: "./public",//本地服务器所加载的页面所在的目录
     historyApiFallback: true,//不跳转
     hot: true, // 热更新
@@ -95,14 +99,23 @@ module.exports = {
   }
 // 模块切分
 optimization:{
-splitChunks:{
-    chunks: initial 表示入口文件中非动态引入的模块,动态和静态导入打包到不同chunk
-            all 表示所有模块,动态导入和静态不超出包大小打包到同一个chunk
-            async 表示异步引入的模块
-    minSize:'', // 拆分包的大小, 至少为minSize
-    maxSize:'', // 将大于maxSize的包，拆分为不小于minSize的包
-    minChunks：n, // 静态被引入的次数超过n打包
-}
+  usedExports: true, // tree shaking 生产模式默认开启
+  runtimeChunk: 'single', // 定义共享运行时模块
+  moduleIds: 'deterministic', // 文件hash变化小
+  splitChunks:{
+      cacheGroups: {
+         vendor: {
+           test: /[\\/]node_modules[\\/]/,
+           name: 'vendors',
+           chunks: 'all',
+         }, // 开启缓存，内容不变打包生成相同的文件
+      chunks: initial 表示入口文件中非动态引入的模块,动态和静态导入打包到不同chunk
+              all 表示所有模块,动态导入和静态不超出包大小打包到同一个chunk
+              async 表示异步引入的模块
+      minSize:'', // 拆分包的大小, 至少为minSize
+      maxSize:'', // 将大于maxSize的包，拆分为不小于minSize的包
+      minChunks：n, // 静态被引入的次数超过n打包
+  }
 }
 }
 ```
