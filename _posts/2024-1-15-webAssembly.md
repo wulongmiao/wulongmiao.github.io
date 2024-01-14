@@ -3,7 +3,7 @@ layout: post
 title: webAssembly
 date: 2024-1-15
 categories: 后端开发
-tags: [消息队列, webAssembly]
+tags: [webAssembly]
 ---
 
 ## wasm介绍
@@ -13,6 +13,12 @@ tags: [消息队列, webAssembly]
 WebAssembly通过引入一种更高效的字节码格式，可以在Web浏览器中运行原生代码，从而提供比JavaScript更好的性能。
 
 ## 环境搭建
+
+### cmake
+
+安装cmake工具
+
+`https://cmake.org/download/`
 
 ### 其他语言编译成wasm
 
@@ -32,6 +38,9 @@ emsdk activate latest
 
 # 验证安装成功
 emcc --version
+
+# 安装mingw编译器
+emsdk install mingw-7.1.0-64bit
 ```
 
 #### 编译命令
