@@ -73,7 +73,7 @@ git clone https://github.com/WebAssembly/wabt.git
 cd wabt
 mkdir build
 cd build
-cmake .. -DCMAKE_BUILD_TYPE=DEBUG -DCMAKE_INSTALL_PREFIX=..\bin  -G "MinGW Makefiles"
+cmake .. -DCMAKE_BUILD_TYPE=DEBUG -DCMAKE_INSTALL_PREFIX=..\bin  -G "Visual Studio 17 2022"  "MinGW Makefiles"
 cd CMakeFiles
 cmake --build .. --config DEBUG --target install
 ```
