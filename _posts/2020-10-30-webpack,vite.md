@@ -21,11 +21,12 @@ tags: [前端开发, webpack, vite]
     npm install -g  webpack
     项目中安装
     npm install --save-dev webpack
+    
+    npx webpack --config webpack.config.js
 
 2. 快捷执行打包任务
     通过 npm init 初始化一个package.json文件
     在 package.json 文件中的 scripts 配置项中,添加一个脚本命令
-
 3. 构建
    npm start
    npm run {script name}
