@@ -11,7 +11,7 @@ tags: [前端开发, webpack, vite]
 根据配置初始化参数,加载插件,实例化webpack对象,调用run方法开始编译,识别所有入口文件,然后根据入口文件loader递归编译模块并构建依赖图谱,打包成chunk,输出到指定路径
 
 多进程构建,代码压缩,缓存,exclude,include缩小搜索/构建范围
-<img src="/img/webpack.png">
+<img src="../img/webpack.png">
 
 ### 初始化
 
@@ -21,8 +21,10 @@ tags: [前端开发, webpack, vite]
     npm install -g  webpack
     项目中安装
     npm install --save-dev webpack
-    
-    npx webpack --config webpack.config.js
+
+    webpack --config webpack.config.js
+    webpack --watch
+    webpack serve --open
 
 2. 快捷执行打包任务
     通过 npm init 初始化一个package.json文件
@@ -179,7 +181,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 预构建依赖,等待 HTTP 请求,构建代码,vite 充分利用缓存加快重载
 
 打包基于rollup,构建基于esbuild
-<img src="/img/vite.png">
+<img src="../img/vite.png">
 
 ### 初始化
 
