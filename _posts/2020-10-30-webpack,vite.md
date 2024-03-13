@@ -234,3 +234,54 @@ export default {
   ]
 }
 ```
+
+## gulp
+
+> 流式打包,
+
+```
+// 导入Gulp和其他所需插件
+const { src, dest, series, parallel } = require('gulp');
+const uglify = require('gulp-uglify'); // 用于压缩JS
+const sass = require('gulp-sass')(require('sass')); // 用于编译Sass
+const cleanCSS = require('gulp-clean-css'); // 用于压缩CSS
+const autoprefixer = require('gulp-autoprefixer'); // 添加CSS前缀
+// ...更多插件按需引入
+
+// 编写任务
+function minifyScripts() {
+  return src('src/js/**/*.js') // 获取源文件
+    .pipe(uglify()) // 压缩JS
+    .pipe(dest('dist/js')); // 输出到目标目录
+}
+
+function compileSass() {
+  return src('src/scss/**/*.scss') // 获取Sass源文件
+    .pipe(sass().on('error', sass.logError)) // 编译Sass
+    .pipe(autoprefixer()) // 添加浏览器前缀
+series    .pipe(dest('dist/css')); // 输出到目标目录
+}
+
+// 定义默认任务（当运行`gulp`时不加任何参数时执行）
+exports.default = series(parallel(minifyScripts, compileSass)); // 并行parallel或串行series执行多个任务
+
+// 可以定义更多的任务，例如监听文件变化重新构建
+function watchFiles() {
+  gulp.watch('src/js/**/*.js', minifyScripts);
+  gulp.watch('src/scss/**/*.scss', compileSass);
+}
+
+// 如果需要在监视模式下运行，则可以添加一个watch任务
+exports.watch = series(exports.default, watchFiles);
+
+
+# 执行默认任务
+gulp
+
+# 或者单独执行某个任务
+gulp minifyScripts
+gulp compileSass
+
+# 若要开启文件监听模式
+gulp watch
+```
