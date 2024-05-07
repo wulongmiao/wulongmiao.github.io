@@ -3,7 +3,7 @@ layout: default
 ---
 
 <!-- Post Header -->
-<header class="intro-header" style="background-image:url('/img/zhihu.jpg">
+<header class="intro-header" style="background-image:url('/img/zhihu.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -14,7 +14,7 @@ layout: default
                         <br/>
                         {% for tag in page.tags %}
                         <!--跳到标签相关页面-->
-                        <a class="tag" href="/页面/标签目录.html#{{ tag }}" title="{{ tag }}" style="color:azure; background-color:#000;-webkit-border-radius: 9px; -moz-border-radius: 9px; border-radius: 9px;  margin:5px;padding:5px; ">{{ tag }}</a> 
+                        <a class="tag" href="/页面/标签目录.html#{{ tag }}" title="{{ tag }}" style="color:azure; background-color:#000;-webkit-border-radius: 9px; -moz-border-radius: 9px; border-radius: 9px;  margin:5px;padding:5px; ">{{ tag }}</a>
                         {% endfor %}
                     </div>
                     <h1>{{ page.title }}</h1>
@@ -36,14 +36,14 @@ layout: default
   <div id="back-down">
     <a href="#down" title="回到底部" target="_self"></a>
 </div>
-  
+
 <!-- Post Content -->
 <article>
 <div class="container">
  <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 post-container">
 
-     {{ content }} 
+     {{ content }}
       <hr>
     <!--翻页-->
      <ul class="pager">
