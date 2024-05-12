@@ -19,6 +19,7 @@ tags: [react native]
 ## 常用命令
 
 ```
+react-native doctor 编译环境预检查
 react-native help 命令提示
 react-native run-android 编译运行
 ```
@@ -100,12 +101,40 @@ mvn versions:display-dependency-updates   列出所有可更新的依赖
       <blocked>true</blocked>
     </mirror>
     <mirror>
-    <id>huaweicloud</id>
-    <mirrorOf>*</mirrorOf>
-    <url>https://mirrors.huaweicloud.com/repository/maven/</url>
+      <id>huaweicloud</id>
+      <mirrorOf>*</mirrorOf>
+      <url>https://mirrors.huaweicloud.com/repository/maven/</url>
     </mirror>
   </mirrors>
   <profiles>
   </profiles>
 </settings>
+```
+
+## java
+
+常用命令
+```
+java -h   命令提示
+
+javac HelloWorld.java   将源代码（.java文件）编译成Java字节码（.class文件）。
+
+java HelloWorld   运行Java应用程序
+java -jar HelloWorld.jar  运行jar包
+
+jar cvfm YourJarName.jar manifest.txt *.class   创建Java档案文件（.jar）
+
+javadoc -public *.java    从源代码中的注释生成HTML格式的API文档。
+
+javap -c HelloWorld   显示编译后的字节码，有助于理解Java程序的底层实现。
+
+keytool -genkey -alias mykey -keyalg RSA    生成、管理和验证Java Keystore中的密钥和证书。
+
+jarsigner -keystore mykeystore myjar.jar mykey    为Java档案文件（.jar）添加或验证数字签名。
+
+直接运行jconsole然后选择要连接的Java进程。    提供了一个图形界面来监控Java应用程序的性能和资源消耗。
+
+直接运行jvisualvm来启动并连接到Java应用。   是一个更强大的可视化工具，可以监控应用程序的内存使用、CPU占用、线程等，并且可以做性能分析。
+
+jstack <pid>    打印出给定Java进程的线程堆栈跟踪，帮助诊断死锁等问题。
 ```
