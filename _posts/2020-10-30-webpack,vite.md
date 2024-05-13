@@ -198,7 +198,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 ```
 // vue
 import vue from '@vitejs/plugin-vue'
-
 export default {
   plugins: [vue()]
 }
@@ -206,7 +205,6 @@ export default {
 
 //vue jsx
 import vueJsx from '@vitejs/plugin-vue-jsx'
-
 export default {
   plugins: [
     vueJsx({
@@ -215,18 +213,38 @@ export default {
   ]
 }
 
-// react
+// 提供对 Vue 2.7 的单文件组件支持
+import vue from '@vitejs/plugin-vue2'
+export default {
+  plugins: [vue()]
+}
+
+// 提供对 Vue 2.7 JSX 对支持
+import vueJsx from '@vitejs/plugin-vue2-jsx'
+export default {
+  plugins: [
+    vueJsx({
+      // options are passed on to @vue/babel-preset-jsx
+    })
+  ]
+}
+
+// react-Babel
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-
 export default defineConfig({
   plugins: [react()]
 })
 
+// react-SWC
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
+export default defineConfig({
+  plugins: [react()],
+});
 
 //babel
 import legacy from '@vitejs/plugin-legacy'
-
 export default {
   plugins: [
     legacy({
