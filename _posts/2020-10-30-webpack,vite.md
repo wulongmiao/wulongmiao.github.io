@@ -22,6 +22,7 @@ tags: [前端开发, webpack, vite]
     项目中安装
     npm install --save-dev webpack
 
+    webpack --progress --config build/webpack.prod.js
     webpack --config webpack.config.js
     webpack --watch
     webpack serve --open
@@ -72,7 +73,7 @@ module.exports = (env) => {}
 module.exports = {
   // 配置source-map
   devtool: dev: 'eval-source-map', "eval"
-           pro:"source-map" "eval-cheap-module-source-map"
+           pro: "source-map" "eval-cheap-module-source-map"
   // 入口
   entry: {
     index: {
@@ -237,18 +238,17 @@ export default {
 
 ## gulp
 
-> 流式打包,
-
 ```
-// 导入Gulp和其他所需插件
-const { src, dest, series, parallel } = require('gulp');
+const { src, dest, series, parallel, task } = require('gulp');
 const uglify = require('gulp-uglify'); // 用于压缩JS
 const sass = require('gulp-sass')(require('sass')); // 用于编译Sass
 const cleanCSS = require('gulp-clean-css'); // 用于压缩CSS
 const autoprefixer = require('gulp-autoprefixer'); // 添加CSS前缀
-// ...更多插件按需引入
 
-// 编写任务
+task('pack:clean', () => {
+  return src(distPath, {allowEmpty: true}).pipe(gulpClean({force: true}))
+})
+
 function minifyScripts() {
   return src('src/js/**/*.js') // 获取源文件
     .pipe(uglify()) // 压缩JS
@@ -259,11 +259,7 @@ function compileSass() {
   return src('src/scss/**/*.scss') // 获取Sass源文件
     .pipe(sass().on('error', sass.logError)) // 编译Sass
     .pipe(autoprefixer()) // 添加浏览器前缀
-series    .pipe(dest('dist/css')); // 输出到目标目录
 }
-
-// 定义默认任务（当运行`gulp`时不加任何参数时执行）
-exports.default = series(parallel(minifyScripts, compileSass)); // 并行parallel或串行series执行多个任务
 
 // 可以定义更多的任务，例如监听文件变化重新构建
 function watchFiles() {
@@ -271,17 +267,19 @@ function watchFiles() {
   gulp.watch('src/scss/**/*.scss', compileSass);
 }
 
+series.pipe(dest('dist/css')); // 输出到目标目录
+
+// 定义默认任务（当运行`gulp`时不加任何参数时执行）
+exports.default = series(parallel(minifyScripts, compileSass)); // 并行parallel或串行series执行多个任务
+
 // 如果需要在监视模式下运行，则可以添加一个watch任务
 exports.watch = series(exports.default, watchFiles);
+```
 
+#### 常用命令
 
-# 执行默认任务
-gulp
-
-# 或者单独执行某个任务
-gulp minifyScripts
-gulp compileSass
-
-# 若要开启文件监听模式
-gulp watch
+```
+gulp 执行默认任务
+gulp pack:clean 或者单独执行某个任务
+gulp watch 若要开启文件监听模式
 ```
