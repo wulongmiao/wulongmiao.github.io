@@ -67,6 +67,9 @@ gzip压缩插件 CompressionWebpackPlugin :后端还得设置,运输过程压缩
 
 ### 常见配置
 
+> 入口文件生成initial(初始化) chunk, 包含入口起点指定的所有模块及其依赖项。
+> non-initial 是可以延迟加载的块。可能会出现在使用 动态导入(dynamic imports) 或者 SplitChunksPlugin 时。
+
 ```
 module.exports = (env) => {}
 
@@ -75,24 +78,23 @@ module.exports = {
   devtool: dev: 'eval-source-map', "eval"
            pro: "source-map" "eval-cheap-module-source-map"
   // 入口
-  entry: {
+  entry: { // ['', '', '']  ''
     index: {
-      import: './src/index.js',
-      dependOn: 'lodash' // 共享模块
-    },
-    a: {
-      import: './src/a.js',
-      dependOn: 'lodash'
+      filename: 指定输出output文件名
+      import: './src/index.js', 启动时加载的模块
+      runtime: '', // 同个入口不能与dependOn共存,运行时chunk名称
+      dependOn: 'lodash' // 依赖的入口，在入口加载前先加载
     },
     lodash: 'lodash'
-  }
+  },
   // 输出
-  output: {
+  output: { // 常用占位符 文件hash:[contenthash] chunkId:[id] 入口文件名(默认main):[name]
     path: __dirname + "/public",
     pathinfo: false, // 不携带路径信息
     filename: "[name].bundle.js"
+    chunkFilename: "[id].[contenthash].js"
   },
-  mode:"produciton development"
+  mode:"produciton", // development
 // 本地服务器
   devServer: {
     static: './dist',
@@ -100,7 +102,7 @@ module.exports = {
     historyApiFallback: true,//不跳转
     hot: true, // 热更新
     port:"8080 "//监听端口
-  }
+  },
 // 模块切分
 optimization:{
   usedExports: true, // tree shaking 生产模式默认开启
@@ -119,8 +121,9 @@ optimization:{
       minSize:'', // 拆分包的大小, 至少为minSize
       maxSize:'', // 将大于maxSize的包，拆分为不小于minSize的包
       minChunks：n, // 静态被引入的次数超过n打包
+      }
+    }
   }
-}
 }
 ```
 
@@ -138,7 +141,25 @@ include/exclude:手动添加必须处理的文件(文件夹)或屏蔽不需要�
 
 #### babel
 
-// npm 一次性安装多个依赖模块,模块之间用空格隔开
+基本使用
+```
+pnpm install -s -d @babel/core @babel/cli @babel/preset-env
+
+// .babelrc
+{
+  "presets": [
+    "@babel/preset-env"
+  ]
+}
+
+// babel.config.js
+module.exports = {
+  presets: ['@babel/preset-env']
+}
+
+npx babel .\get-package.js --out-file dist/test-babel-output.js
+```
+
 `npm install --save-dev babel-core babel-loader babel-preset-env babel-preset-react`
 
 ```
@@ -149,9 +170,7 @@ include/exclude:手动添加必须处理的文件(文件夹)或屏蔽不需要�
                 use: {
                     loader: "babel-loader",
                     options: {
-                        presets: [
-                            "env", "react"
-                        ]
+                      presets: ['@babel/preset-env']
                     }
                 },
                 exclude: /node_modules/
@@ -192,6 +211,14 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 `$ yarn create vite`
 
+### 常用命令
+
+```
+vite
+vite build
+vite preview
+vite optimize
+```
 
 ### 官方提供插件
 
@@ -294,7 +321,7 @@ exports.default = series(parallel(minifyScripts, compileSass)); // 并行paralle
 exports.watch = series(exports.default, watchFiles);
 ```
 
-#### 常用命令
+### 常用命令
 
 ```
 gulp 执行默认任务
