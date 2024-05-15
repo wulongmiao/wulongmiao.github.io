@@ -141,10 +141,12 @@ include/exclude:手动添加必须处理的文件(文件夹)或屏蔽不需要�
 
 #### babel
 
-基本使用
-```
-pnpm install -s -d @babel/core @babel/cli @babel/preset-env
+> babel7下各个子库以 - 分割，7及之后 / 分割
 
+`pnpm install -s -d @babel/core @babel/cli @babel/preset-env @babel/preset-react`
+
+简单用法
+```
 // .babelrc
 {
   "presets": [
@@ -160,23 +162,76 @@ module.exports = {
 npx babel .\get-package.js --out-file dist/test-babel-output.js
 ```
 
-`npm install --save-dev babel-core babel-loader babel-preset-env babel-preset-react`
+`pnpm install --save-dev babel-core babel-loader babel-preset-env babel-preset-react`
 
 ```
-    module: {
-        rules: [
-            {
-                test: /(\.jsx|\.js)$/,
-                use: {
-                    loader: "babel-loader",
-                    options: {
-                      presets: ['@babel/preset-env']
-                    }
-                },
-                exclude: /node_modules/
-            }
-        ]
-    }
+module: {
+    rules: [
+        {
+            test: /(\.jsx|\.js)$/,
+            use: {
+                loader: "babel-loader",
+                options: {
+                  presets: ['@babel/preset-env']
+                }
+            },
+            exclude: /node_modules/
+        }
+    ]
+}
+```
+
+#### postCSS
+
+> 通过插件系统来转换 CSS 代码，自动添加浏览器前缀，适配不同浏览器，使用未正式纳入标准的css语法，与其他css预处理语言一样变量、混合等功能
+
+`pnpm install --save-dev postcss postcss-cli autoprefixer`
+
+简单用法
+```
+// postcss.config.js
+module.exports = {
+  plugins: [
+    require('autoprefixer') // 自动添加浏览器前缀
+  ]
+};
+
+npx postcss styles.css -o build/styles.css
+```
+
+`pnpm install --save-dev postcss-loader autoprefixer`
+
+```
+const path = require('path');
+module: {
+  rules: [
+    {
+      test: /\.css$/i,
+      use: [
+        {
+          loader: 'css-loader', // 将 CSS 转换为 CommonJS 模块
+          options: {
+            importLoaders: 1, // 允许 css-loader 之前的 loaders 运行
+          },
+        },
+        {
+          loader: 'postcss-loader', // PostCSS 加载器
+          options: { // 已定义 PostCSS 配置文件无需配置
+            postcssOptions: {
+              plugins: [
+                // 自动添加浏览器前缀
+                require('autoprefixer')({
+                  overrideBrowserslist: ['> 1%', 'last 2 versions', 'not dead'],
+                }),
+                // 可以添加更多 PostCSS 插件...
+              ],
+            },
+          },
+        },
+      ],
+    },
+  ],
+}
 ```
 
 ### 插件(Plugins)
