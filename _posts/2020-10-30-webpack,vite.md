@@ -15,24 +15,12 @@ tags: [前端开发, webpack, vite]
 
 ### 初始化
 
+`pnpm install webpack webpack-cli webpack-dev-server --save-dev`
+
 ```
-1. 安装webpack(先进入项目目录)
-    全局安装
-    npm install -g  webpack
-    项目中安装
-    npm install --save-dev webpack
-
-    webpack --progress --config build/webpack.prod.js
-    webpack --config webpack.config.js
-    webpack --watch
-    webpack serve --open
-
-2. 快捷执行打包任务
-    通过 npm init 初始化一个package.json文件
-    在 package.json 文件中的 scripts 配置项中,添加一个脚本命令
-3. 构建
-   npm start
-   npm run {script name}
+webpack --progress --config build/webpack.prod.js
+webpack --watch
+webpack serve --open
 ```
 
 ### webpack优化
@@ -71,9 +59,21 @@ gzip压缩插件 CompressionWebpackPlugin :后端还得设置,运输过程压缩
 > non-initial 是可以延迟加载的块。可能会出现在使用 动态导入(dynamic imports) 或者 SplitChunksPlugin 时。
 
 ```
+// 异步(动态)导入指定chunk名称
+import(
+  /* webpackChunkName: "app" */
+  './app.jsx'
+).then((App) => {
+  ReactDOM.render(<App />, root);
+});
+```
+
+```
 module.exports = (env) => {}
 
 module.exports = {
+  context: Path.resolve(__dirname, '../frontend'),
+  target: 'node',
   // 配置source-map
   devtool: dev: 'eval-source-map', "eval"
            pro: "source-map" "eval-cheap-module-source-map"
@@ -94,33 +94,63 @@ module.exports = {
     filename: "[name].bundle.js"
     chunkFilename: "[id].[contenthash].js"
   },
-  mode:"produciton", // development
+  mode:"production", // development
 // 本地服务器
   devServer: {
-    static: './dist',
-    contentBase: "./public",//本地服务器所加载的页面所在的目录
-    historyApiFallback: true,//不跳转
+    static: './dist', // 本地服务器所加载的页面所在的目录 ['', '']
+    historyApiFallback: true, // 不跳转
     hot: true, // 热更新
-    port:"8080 "//监听端口
+    port:"8080" // 监听端口
+    host: '' // 默认'localhost'
+    open: '' // 自动打开浏览器预览，默认为 false，可以设置为 'true' 或指定浏览器名称，如 'Chrome'。
+    compress: '' // 启用 gzip 压缩，可以提高文件传输效率。
+    overlay: '' // 在浏览器窗口中显示编译错误或警告信息。
+    client: {
+      logging: 'info', // 设置日志级别
+      progress: true, // 显示编译进度条
+      overlay: { // 配置错误覆盖层
+        errors: true,
+        warnings: false,
+        timeout: 2000, // 错误覆盖层2秒后自动隐藏
+      },
+      reconnect: { // 配置WebSocket断线重连
+        delay: 2000,
+        retries: 3, // 尝试重连3次
+      },
+      webSocketURL: {
+        hostname: 'localhost',
+        pathname: '/ws',
+        port: 3001,
+      },
+    },
+    proxy: {
+      '/api': 'http://localhost:8080', // 代理API请求到后端服务器
+    }
   },
 // 模块切分
 optimization:{
   usedExports: true, // tree shaking 生产模式默认开启
-  runtimeChunk: 'single', // 定义共享运行时模块
-  moduleIds: 'deterministic', // 文件hash变化小
+  runtimeChunk: 'single', // 运行时chunk单独分包
+  minimize: true,
   splitChunks:{
-      cacheGroups: {
-         vendor: {
-           test: /[\\/]node_modules[\\/]/,
-           name: 'vendors',
-           chunks: 'all',
-         }, // 开启缓存，内容不变打包生成相同的文件
-      chunks: initial 表示入口文件中非动态引入的模块,动态和静态导入打包到不同chunk
-              all 表示所有模块,动态导入和静态不超出包大小打包到同一个chunk
-              async 表示异步引入的模块
-      minSize:'', // 拆分包的大小, 至少为minSize
-      maxSize:'', // 将大于maxSize的包，拆分为不小于minSize的包
-      minChunks：n, // 静态被引入的次数超过n打包
+      chunks: 'async', // 仅分包入口文件及其依赖 initial all 表示所有模块,动态导入和静态 async 只分包异步chunk
+      minSize: 20000, // 最小分包大小，小于该值与原chunk合并
+      minRemainingSize: 0, // 最小剩余chunk大小
+      minChunks: 1, // 最小引用次数
+      maxAsyncRequests: 30, // 最大异步请求数
+      maxInitialRequests: 30, // 最大初始请求数
+      enforceSizeThreshold: 50000, // 超过该值将不再进行拆分
+      cacheGroups: { // 分包策略
+        defaultVendors: {
+          test: /[\\/]node_modules[\\/]/, // 匹配node_modules中的文件
+          priority: -10, // 优先级
+          reuseExistingChunk: true, // 是否复用该chunk（如果被引用则使用，而不是重复打包）
+        },
+        default: {
+          minChunks: 2, // 至少被引用两次
+          priority: -20, // 优先级
+          reuseExistingChunk: true, // 是否复用该chunk（如果被引用则使用，而不是重复打包）
+        },
       }
     }
   }
