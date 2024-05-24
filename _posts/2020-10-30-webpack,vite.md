@@ -131,15 +131,14 @@ module.exports = {
 optimization:{
   usedExports: true, // tree shaking 生产模式默认开启
   runtimeChunk: 'single', // 运行时chunk单独分包
-  minimize: true,
   splitChunks:{
-      chunks: 'async', // 仅分包入口文件及其依赖 initial all 表示所有模块,动态导入和静态 async 只分包异步chunk
+      chunks: 'async', // 仅分包入口文件及其依赖 initial; all 表示所有模块,动态导入和静态; async 只分包异步chunk
       minSize: 20000, // 最小分包大小，小于该值与原chunk合并
       minRemainingSize: 0, // 最小剩余chunk大小
       minChunks: 1, // 最小引用次数
       maxAsyncRequests: 30, // 最大异步请求数
       maxInitialRequests: 30, // 最大初始请求数
-      enforceSizeThreshold: 50000, // 超过该值将不再进行拆分
+      enforceSizeThreshold: 50000, // 超过该值强制拆分
       cacheGroups: { // 分包策略
         defaultVendors: {
           test: /[\\/]node_modules[\\/]/, // 匹配node_modules中的文件
