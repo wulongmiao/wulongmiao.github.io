@@ -282,6 +282,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 ## vite
 
+依赖通过请求强缓存，源码协商缓存变化时热更新
 预构建依赖,等待 HTTP 请求,构建代码,vite 充分利用缓存加快重载
 
 打包基于rollup,构建基于esbuild
