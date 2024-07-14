@@ -110,7 +110,8 @@ interface SquareConfig {
 
 ## 高级类型(type)
 
-和interface功能类型,但是不能实现,接口不能声明联合类型
+和 interface 功能类型,但是不能实现,接口不能声明联合类型
+
 ```
 type Methods = 'GET' | 'POST' | 'PUT' | 'DELETE'
 let method: Methods
@@ -301,7 +302,7 @@ type C = A['c']
 type E = A['d'][number]['e']
 ```
 
-#### const let类型推断
+#### const let 类型推断
 
 ```
 const a = 1 // 则 a 的类型就为 1
@@ -320,7 +321,8 @@ let a = 1 // a 为 number 类型
 let b = '2' // b 为 string 类型
 ```
 
-#### 断言as
+#### 断言 as
+
 ```
 尽量避免使用as any 推荐as unknown
 
