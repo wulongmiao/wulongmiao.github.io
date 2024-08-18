@@ -8,9 +8,9 @@ tags: [前端开发, webpack, vite]
 
 ## webpack
 
-根据配置初始化参数,加载插件,实例化webpack对象,调用run方法开始编译,识别所有入口文件,然后根据入口文件loader递归编译模块并构建依赖图谱,打包成chunk,输出到指定路径
+根据配置初始化参数,加载插件,实例化 webpack 对象,调用 run 方法开始编译,识别所有入口文件,然后根据入口文件 loader 递归编译模块并构建依赖图谱,打包成 chunk,输出到指定路径
 
-多进程构建,代码压缩,缓存,exclude,include缩小搜索/构建范围
+多进程构建,代码压缩,缓存,exclude,include 缩小搜索/构建范围
 <img src="../img/webpack.png">
 
 ### 初始化
@@ -23,9 +23,10 @@ webpack --watch
 webpack serve --open
 ```
 
-### webpack优化
+### webpack 优化
 
 #### 构建时间优化
+
 ```
 多进程打包 thread-loader:将thread-loader放在费资源loader前面
 
@@ -39,7 +40,9 @@ webpack serve --open
 ```
 
 #### 打包体积优化
+
 ```
+单独提取css样式文件MiniCssExtractPlugin
 css压缩插件css-minimizer-webpack-plugin
 js压缩插件terser-webpack-plugin
 html压缩html-webpack-plugin
@@ -48,6 +51,7 @@ html压缩html-webpack-plugin
 ```
 
 #### 用户体验优化
+
 ```
 模块懒加载splitChunksPlugin:首屏请求所有资源,单页应用首屏加载慢,分块按需加载,提升首屏性能
 gzip压缩插件 CompressionWebpackPlugin :后端还得设置,运输过程压缩,减少传输时间,客户端解析时间开销增加,Accept-Encoding:gzip来标识对压缩的支持
@@ -55,7 +59,7 @@ gzip压缩插件 CompressionWebpackPlugin :后端还得设置,运输过程压缩
 
 ### 常见配置
 
-> 入口文件生成initial(初始化) chunk, 包含入口起点指定的所有模块及其依赖项。
+> 入口文件生成 initial(初始化) chunk, 包含入口起点指定的所有模块及其依赖项。
 > non-initial 是可以延迟加载的块。可能会出现在使用 动态导入(dynamic imports) 或者 SplitChunksPlugin 时。
 
 ```
@@ -91,7 +95,9 @@ module.exports = {
   output: { // 常用占位符 文件hash:[contenthash] chunkId:[id] 入口文件名(默认main):[name]
     path: __dirname + "/public",
     pathinfo: false, // 不携带路径信息
+    // 静态导入命名
     filename: "[name].bundle.js"
+    // 动态导入命名
     chunkFilename: "[id].[contenthash].js"
   },
   mode:"production", // development
@@ -158,7 +164,7 @@ optimization:{
 
 ### loaders
 
-webpack只能处理js,json文件,loaders处理特定类型文件,转换成相应模块,在bundle前打包相应模块
+webpack 只能处理 js,json 文件,loaders 处理特定类型文件,转换成相应模块,在 bundle 前打包相应模块
 
 ```
 Loaders需要单独安装并且需要在webpack.config.js中的modules关键字下进行配置,Loaders的配置包括以下几方面:
@@ -170,11 +176,12 @@ include/exclude:手动添加必须处理的文件(文件夹)或屏蔽不需要�
 
 #### babel
 
-> babel7下各个子库以 - 分割，7及之后 / 分割
+> babel7 下各个子库以 - 分割，7 及之后 / 分割
 
 `pnpm install -s -d @babel/core @babel/cli @babel/preset-env @babel/preset-react`
 
 简单用法
+
 ```
 // .babelrc
 {
@@ -212,11 +219,12 @@ module: {
 
 #### postCSS
 
-> 通过插件系统来转换 CSS 代码，自动添加浏览器前缀，适配不同浏览器，使用未正式纳入标准的css语法，与其他css预处理语言一样变量、混合等功能
+> 通过插件系统来转换 CSS 代码，自动添加浏览器前缀，适配不同浏览器，使用未正式纳入标准的 css 语法，与其他 css 预处理语言一样变量、混合等功能
 
 `pnpm install --save-dev postcss postcss-cli autoprefixer`
 
 简单用法
+
 ```
 // postcss.config.js
 module.exports = {
@@ -278,14 +286,14 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 `npm install --save-dev extract-text-webpack-plugin`
 
-- - -
+---
 
 ## vite
 
 依赖通过请求强缓存，源码协商缓存变化时热更新
 预构建依赖,等待 HTTP 请求,构建代码,vite 充分利用缓存加快重载
 
-打包基于rollup,构建基于esbuild
+打包基于 rollup,构建基于 esbuild
 <img src="../img/vite.png">
 
 ### 初始化
