@@ -113,11 +113,11 @@ interface SquareConfig {
 和 interface 功能类型,但是不能实现,接口不能声明联合类型
 
 ```
+// 联合类型
 type Methods = 'GET' | 'POST' | 'PUT' | 'DELETE'
-let method: Methods
-method = 'PUT' // OK
-method = 'aaa' // error
 
+// 交叉类型 == a+b
+type x = a & b
 
 type a = {
   aa?:string | number
@@ -128,17 +128,29 @@ type b = {
   dd?: string
 }
 
-// 交叉类型
-type x = a & b
-
-// 选中部分组成新类型
-type v = Pick<x, 'aa'>
+// 选中部分组成新类型 用于interface
+type v = Pick<x, 'aa' | 'dd'>
 
 // 排除部分组成新类型
-type z = Omit<x, 'aa'>
-const aa: v = { aa: 22 }
-const bb: z = { cc: '22' }
-const cc: x = { cc: '22' }
+type z = Omit<x, 'aa' | 'dd'>
+
+// Partial属性全转化为可选
+Partial<T>
+
+// Required属性全转为必选
+Required<T>
+
+// 排除null undefined
+NonNullable<T>
+
+// Record创建一个对象类型k,t
+Record<K, T>
+
+// 排除u类型用于type
+Exclude<T, U>
+
+// 提取u类型
+Extract<T, U>
 ```
 
 ## 泛型
@@ -251,58 +263,7 @@ declare namespace 声明全局对象（含有子属性）
 interface 和 type 声明全局类型
 ```
 
-## 使用技巧
-
-#### 提取数组每一项类型
-
-```
-type ArrayType1 = Array<{
-    a: number
-    b: number
-}>
-type ArrayType2 = ({
-    a: number
-    b: number
-} | {
-    c: string
-    d: string
-})[]
-// 通过索引访问来获取,我们都知道数组的索引是 number 类型的
-type GetArrayOrTupleItemType1 = ArrayType1[number]
-// 得到
-type GetArrayOrTupleItemType1 = {
-    a: number
-    b: number
-}
-// 通过 infer 进行推导
-type GetArrayOrTupleItemType2 = ArrayType2 extends Array<infer U> ? U : never
-// 得到
-type GetArrayOrTupleItemType2 = {
-    a: number
-    b: number
-} | {
-    c: string
-    d: string
-}
-```
-
-#### 提取接口中的类型
-
-```
-interface A {
-    b: string
-    c: number
-    d: Array<{
-        e: symbol
-    }>
-}
-type B = A['b']
-type C = A['c']
-// 与上一小节的技巧配置使用
-type E = A['d'][number]['e']
-```
-
-#### const let 类型推断
+## const let 类型推断
 
 ```
 const a = 1 // 则 a 的类型就为 1
@@ -321,7 +282,7 @@ let a = 1 // a 为 number 类型
 let b = '2' // b 为 string 类型
 ```
 
-#### 断言 as
+## 断言 as
 
 ```
 尽量避免使用as any 推荐as unknown
