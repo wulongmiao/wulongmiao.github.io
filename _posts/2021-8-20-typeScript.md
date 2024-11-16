@@ -151,6 +151,9 @@ Exclude<T, U>
 
 // 提取u类型
 Extract<T, U>
+
+// 类型推断，常用于类型提取
+infer
 ```
 
 ## 泛型
