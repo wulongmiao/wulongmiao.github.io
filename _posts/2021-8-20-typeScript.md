@@ -6,6 +6,8 @@ categories: 前端开发
 tags: [JS超集, TypeScript, 类型检查]
 ---
 
+<!-- @format -->
+
 ## 安装
 
 国内镜像
@@ -89,6 +91,13 @@ null undefined
 never
 ```
 
+unknown
+
+```
+unknown 需要断言类型或者判断类型
+never 表示不可能的类型
+```
+
 ## 联合类型
 
 通过管道(|)将变量设置多种类型,赋值时可以根据设置的类型来赋值
@@ -116,7 +125,7 @@ interface SquareConfig {
 // 联合类型
 type Methods = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
-// 交叉类型 == a+b
+// 交叉类型
 type x = a & b
 
 type a = {
@@ -146,14 +155,17 @@ NonNullable<T>
 // Record创建一个对象类型k,t
 Record<K, T>
 
-// 排除u类型用于type
+// 排除type类型
 Exclude<T, U>
 
-// 提取u类型
+// 提取type类型
 Extract<T, U>
 
+Array<keyof b>
+type PropType<T, K extends keyof T> = T extends { [key in K]: infer U } ? U : never
+
 // 类型推断，常用于类型提取
-infer
+type Flatten<T> = T extends Array<infer U> ? Flatten<U> : T
 ```
 
 ## 泛型
@@ -297,3 +309,7 @@ const c = (params: { b: 1 }) => {}
 
 c(a) // 报错:不能将类型“number”分配给类型“1”,在 b: 1 那一行最后加上 as const 即可解决
 ```
+
+## 配置文件规则
+
+<img src="../img/ts.jpg">
