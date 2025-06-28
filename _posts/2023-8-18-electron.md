@@ -40,6 +40,7 @@ ipcRenderer.on('send-reply', (event, arg) => {
   console.log(arg); // 输出: reply data
 });
 
+
 webContents:
 // 假设你已经有了一个BrowserWindow实例叫做win
 win.webContents.send('channel-test', '发送消息');
@@ -49,9 +50,36 @@ ipcRenderer.on('channel-test', (event, data) => {
   console.log(data);
 });
 
+
 remote方法跨进程通信:
 import {remote} from 'electron'
 JSON.stringify(remote.getGlobal('foo'))
+
+
+隔离的上下文中创建一个安全的、双向的、同步的桥梁contextBridge:
+// 预加载脚本 (preload.js)
+const { contextBridge, ipcRenderer } = require('electron')
+
+contextBridge.exposeInMainWorld('electronAPI', {
+  sendMessage: (message) => ipcRenderer.send('message', message),
+  onReply: (callback) => ipcRenderer.on('reply', callback)
+})
+
+// 渲染进程
+window.electronAPI.sendMessage('Hello from renderer')
+window.electronAPI.onReply((event, arg) => {
+  console.log(arg) // 打印 "Hello from main"
+})
+
+// 主进程
+ipcMain.on('message', (event, arg) => {
+  console.log(arg) // 打印 "Hello from renderer"
+  event.sender.send('reply', 'Hello from main')
+})
+
+
+MessagePort API
+
 
 自定义协议或WebSocket
 ```
